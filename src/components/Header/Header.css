@@ -2,8 +2,6 @@ header{
     width: 100vw;
     height: 60px;
     flex-shrink: 0;
-    position: absolute;
-    top: 0;
     background: #0E0D0D;
     display: flex;
     align-items: center;

@@ -1,0 +1,9 @@
+.column{
+    width: 340px;
+    height: fit-content;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 2px solid #565656;
+    background: #0E0D0D;
+    min-height: 50vh;
+}

@@ -2,12 +2,10 @@ footer{
     width: 100vw;
     height: 60px;
     flex-shrink: 0;
-    position: absolute;
-    bottom: 0;
     background: #0E0D0D;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 15px;    
+    font-size: 15px; 
 }
 

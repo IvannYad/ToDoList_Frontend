@@ -2,9 +2,7 @@ form{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 84vw;
-    position: absolute;
-    top: 100px;
+    width: 90vw;
 }
 
 #button{
