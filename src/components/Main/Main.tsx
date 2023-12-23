@@ -1,6 +1,10 @@
+import SearchForm from "../SearchForm/SearchForm";
+import "./Main.css"
 
 export default function Main(){
     return (
-        <p>Hello</p>
+        <main>
+            <SearchForm />
+        </main>
     )
 }
