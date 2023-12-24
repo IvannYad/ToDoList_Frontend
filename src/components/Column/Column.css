@@ -7,6 +7,10 @@
     border-top: 0px;
     background: #0E0D0D;
     min-height: 50vh;
+    display: block;
+}
+.column div{
+    display: block;
 }
 
 #to-do-column .column-header{
@@ -39,10 +43,15 @@
     margin-top: 0px;
     color: #0E0D0D;
     font-family: Inter;
-    font-size: 1.3rem;
-    font-style: italic;
+    font-size: 1.4rem;
     font-weight: 700;
     line-height: normal;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
+
+.content-holder{
+    display: inline;
+}
+

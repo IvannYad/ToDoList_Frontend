@@ -1,3 +1,5 @@
+import AddTaskButton from "../AddTaskButton/AddTaskButton";
+import TaskList from "../TaskList/TaskList";
 import "./Column.css"
 
 type ColumnProps = {
@@ -10,6 +12,10 @@ export default function Column({id, title}: ColumnProps){
         <div id={id} className="column">
             <div className="column-header">
                 {title}
+            </div>
+            <div>
+                <TaskList />
+                { id === "to-do-column" ? <AddTaskButton /> : ""}
             </div>
         </div>
     )   
