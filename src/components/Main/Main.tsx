@@ -10,9 +10,9 @@ export default function Main(){
             </div>
             <div>
                 <div id="column-container">
-                    <Column id="to-do-column"/>
-                    <Column id="in-progress-column"/>
-                    <Column id="done-column"/>
+                    <Column id="to-do-column" title="Todo"/>
+                    <Column id="in-progress-column" title="In progress"/>
+                    <Column id="done-column" title="Done"/>
                 </div>
             </div>
         </main>
