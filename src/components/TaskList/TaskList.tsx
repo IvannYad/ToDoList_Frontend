@@ -12,20 +12,33 @@ export type TaskData = {
     type: "feature" | "bug";
 }
 
-export default function TaskList(){
-    const taskData: TaskData = {
-        id: 1,
-        title: "Hello",
-        description: "Lorem Ipsun dolores...",
-        startDate: "11.11.1111",
-        endDate: "22.22.2222",
-        status: "to-do",
-        type: "bug",
+type TaskListProps = {
+    tasks: TaskData[];
+    columnId: "to-do-column" | "in-progress-column" | "done-column";
+}
+
+export default function TaskList(props: TaskListProps){
+    let tasksToPass = props.tasks;
+    if(props.columnId === "to-do-column"){
+        tasksToPass = tasksToPass.filter(task => task.status === "to-do");
+    }
+    if(props.columnId === "in-progress-column"){
+        tasksToPass = tasksToPass.filter(task => task.status === "in-progress");
+    }
+    if(props.columnId === "done-column"){
+        tasksToPass = tasksToPass.filter(task => task.status === "done");
     }
     return (
         <React.Fragment>
-            <TaskCard data={taskData}/>
-            <TaskCard data={taskData}/>
+            <ul id="task-card-ul">
+                {tasksToPass.map((task) => {
+                    return <li>
+                        <TaskCard data={task}/>
+                    </li>
+                })}
+            </ul>
+            
+            
         </React.Fragment>
         
         
