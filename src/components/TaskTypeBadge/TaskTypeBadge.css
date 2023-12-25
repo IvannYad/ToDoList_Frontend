@@ -1,0 +1,26 @@
+#task-type-badge{
+    width: 50px;
+    height: 17px;
+    flex-shrink: 0;
+    border-radius: 25px;
+    font-family: Inter;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.badge-feature{
+    border: 1px solid #37A642;
+    background: rgba(82, 252, 99, 0.27);
+    color: #37A642;
+}
+
+.badge-bug{
+    border: 1px solid #D03333;
+    background: rgba(232, 38, 38, 0.27);
+    color: #D45A5A;
+}
