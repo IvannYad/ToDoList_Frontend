@@ -8,6 +8,7 @@ type TaskCardProps = {
     data: Task;
     hostElement: HTMLElement;
     isOpen: boolean;
+    resetHandler: () => void;
 }
 
 export default function TaskCard(props: TaskCardProps){
@@ -39,7 +40,7 @@ export default function TaskCard(props: TaskCardProps){
                     <div>
                         <button className="button updateButton">Update</button>
                         <button className="button deleteButton">Delete</button>
-                        <button className="button backToListButton">Back to list</button>
+                        <button className="button backToListButton" onClick={() => props.resetHandler()}>Back to list</button>
                     </div>
                 </div>
             </div>

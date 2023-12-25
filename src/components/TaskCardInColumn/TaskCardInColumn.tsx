@@ -14,7 +14,7 @@ type TaskCardPropsInColumn = {
 type TaskCardProps = {
     data: Task;
     hostElement: HTMLElement;
-    isOpen: boolean;
+    resetHandler: () => void;
 }
 
 export default function TaskCardInColumn(props: TaskCardPropsInColumn){
@@ -35,6 +35,9 @@ export default function TaskCardInColumn(props: TaskCardPropsInColumn){
         setIsOpen(true);
     }
 
+    function resetClick(): void{
+        setIsOpen(false);
+    }
     useEffect(() => {
         element = document.getElementById(`task-card-${props.data.id}`) as HTMLElement;
         element.addEventListener("dragstart", dragStartHandler);
@@ -44,7 +47,7 @@ export default function TaskCardInColumn(props: TaskCardPropsInColumn){
     const taskCardProps:TaskCardProps = {
         data: props.data,
         hostElement: document.getElementById("additional-elements-holder") as HTMLElement,
-        isOpen: false
+        resetHandler: resetClick
     }
 
     return (
@@ -67,7 +70,7 @@ export default function TaskCardInColumn(props: TaskCardPropsInColumn){
                     </div>
                 </div>
             </button>
-            <TaskCard data={taskCardProps.data} hostElement={taskCardProps.hostElement} isOpen={isOpen}/>
+            <TaskCard data={taskCardProps.data} hostElement={taskCardProps.hostElement} isOpen={isOpen} resetHandler={taskCardProps.resetHandler}/>
         </div>
     )
 }
