@@ -9,9 +9,10 @@ type ColumnProps = {
     id: "to-do-column" | "in-progress-column" | "done-column";
     title: string;
     tasks: Task[];
+    updateNotification: () => void;
 }
 
-export default function Column({id, title, tasks}: ColumnProps){
+export default function Column({id, title, tasks, updateNotification}: ColumnProps){
     const taskAPIService = useContext(TaskAPIServiceContext);
     let element: HTMLElement;
 
@@ -43,23 +44,23 @@ export default function Column({id, title, tasks}: ColumnProps){
 
         const newStatus = id === "to-do-column" ? "to-do" : 
             (id === "in-progress-column" ? "in-progress" : "done");
-        const task: Task = JSON.parse(event.dataTransfer!.getData("text/plain"));
+        const oldTask: Task = JSON.parse(event.dataTransfer!.getData("text/plain"));
         const newTaskData: Task = {
-            ... task,
+            ... oldTask,
             status: newStatus 
         }
         console.log(newTaskData);
         // console.log(newTaskData.id);
         // console.log(task); 
         if(newTaskData.id){
-            taskAPIService.update(+task.id, newTaskData);
+            taskAPIService.update(+oldTask.id, newTaskData);
         }
         
-
         element.classList.remove("drag-over");
         const header = element.getElementsByClassName("column-header")[0];
         header.classList.remove("column-header-drag-over");
         header.classList.add("column-header");
+        updateNotification();
     }
 
     function dragLEaveHandler(event: DragEvent): void {
