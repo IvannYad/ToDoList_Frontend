@@ -13,7 +13,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
+.disable-scrolling{
+  overflow-y: hidden;
+}
 
 a {
   font-weight: 500;

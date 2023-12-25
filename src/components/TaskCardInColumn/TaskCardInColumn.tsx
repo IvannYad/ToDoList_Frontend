@@ -32,10 +32,20 @@ export default function TaskCardInColumn(props: TaskCardPropsInColumn){
     }
 
     function clickHandler(): void{
+        const curtainsElement = document.getElementById("curtains") as HTMLElement;
+        curtainsElement.classList.add("blurry-rectangle");
+        
+        const rootElement = document.getElementsByTagName("body")[0] as HTMLElement;
+        rootElement.classList.add("disable-scrolling");
         setIsOpen(true);
     }
 
     function resetClick(): void{
+        const curtainsElement = document.getElementById("curtains") as HTMLElement;
+        curtainsElement.classList.remove("blurry-rectangle");
+
+        const rootElement = document.getElementsByTagName("body")[0] as HTMLElement;
+        rootElement.classList.remove("disable-scrolling");
         setIsOpen(false);
     }
     useEffect(() => {
