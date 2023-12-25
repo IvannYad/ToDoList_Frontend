@@ -1,5 +1,5 @@
 import React from "react";
-import TaskCard from "../TaskCardInColumn/TaskCardInColumn";
+import TaskCardInColumn from "../TaskCardInColumn/TaskCardInColumn";
 import "./TaskList.css"
 import { Task } from "../../models/Task";
 
@@ -24,7 +24,7 @@ export default function TaskList(props: TaskListProps){
             <ul id="task-card-ul">
                 {tasksToPass.map((task) => {
                     return <li key={task.id}>
-                        <TaskCard data={task}/>
+                        <TaskCardInColumn data={task}/>
                     </li>
                 })}
             </ul>

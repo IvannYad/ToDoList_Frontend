@@ -18,9 +18,9 @@ function App() {
       <Header />
       <Main />
       <Footer />
+      <div id="additional-elements-holder"></div>
     </React.Fragment>
     </TaskAPIServiceContext.Provider>
-    
   )
 }
 
