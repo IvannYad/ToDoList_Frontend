@@ -13,13 +13,13 @@ export default function TaskList(props: TaskCardProps){
     let element;
     
     function dragStartHandler(event: DragEvent): void {
-        event.dataTransfer!.setData("text/plain", props.data.id + "");
-        console.log("drag Start");
+        event.dataTransfer!.setData("text/plain", JSON.stringify(props.data));
+        console.log(event.dataTransfer!.getData("text/plain"));
         event.dataTransfer!.effectAllowed = "move";
     }
 
     function dragEndHandler(event: DragEvent): void {
-        console.log(event);
+        event.preventDefault();
     }
 
     useEffect(() => {

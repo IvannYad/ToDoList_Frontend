@@ -18,7 +18,7 @@ export default class TaskAPIService implements ITaskAPIService{
             if (filter){
                 tasksToReturn = tasksToReturn!.filter((task: Task) => filter(task));
             }
-            console.log(tasksToReturn);
+        
             return tasksToReturn;
         })
         .catch(error => console.log(error))
@@ -42,19 +42,10 @@ export default class TaskAPIService implements ITaskAPIService{
             });
     }
     update(id: number, newTask: Task): void {
-        const taskUpdate = {
-            taskTitle: newTask.taskTitle,
-            additionalDescription: newTask.additionalDescription,
-            taskStartTime: newTask.taskStartTime,
-            taskEndTime: newTask.taskEndTime,
-            status: newTask.status,
-            type: newTask.type
-        }
-
-        axios.put(`${this.url}/${id}`, taskUpdate)
+        console.log(id, newTask);
+        axios.put(`${this.url}/${id}`, newTask)
             .then(res => {
-                console.log(res);
-                console.log(res.data);
+                console.log("MyRes" + res);
             });
     }
     remove(id: number): void {
