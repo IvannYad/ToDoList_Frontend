@@ -39,26 +39,26 @@
     justify-content: center;
 }
 
-#card-time-display{
+#task-card-in-column-holder #card-time-display{
     width: 100%;
     margin-top: 12px;
     display: flex;
     justify-content: center;
 }
 
-#card-description-display{
+#task-card-in-column-holder #card-description-display{
     width: 100%;
     margin-top: 12px;
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
 }
-#row-holder{
+#task-card-in-column-holder #row-holder{
     width: 85%;
     display: flex;
     justify-content: space-between;
 }
-.card-title-text{
+#task-card-in-column-holder .card-title-text{
     color: #FFF;
     font-family: Inter;
     font-size: 20px;
@@ -68,18 +68,18 @@
     text-decoration-line: underline;
 }
 
-#card-time-display{
+#task-card-in-column-holder #card-time-display{
     display: flex;
     justify-content: center;
 }
 
-#title-holder{
+#task-card-in-column-holder #title-holder{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.card-time-text{
+#task-card-in-column-holder .card-time-text{
     color: #FFF;
     font-family: Inter;
     font-size: 16px;
@@ -88,7 +88,7 @@
     line-height: normal;
 }
 
-.card-description-text{
+#task-card-in-column-holder .card-description-text{
     color: #FFF;
     font-family: Inter;
     font-size: 15px;
