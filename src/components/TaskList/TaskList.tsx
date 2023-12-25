@@ -1,5 +1,5 @@
 import React from "react";
-import TaskCard from "../TaskCard/TaskCard";
+import TaskCard from "../TaskCardInColumn/TaskCardInColumn";
 import "./TaskList.css"
 import { Task } from "../../models/Task";
 

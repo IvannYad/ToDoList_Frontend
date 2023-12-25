@@ -1,4 +1,4 @@
-import "./TaskCard.css"
+import "./TaskCardInColumn.css"
 import TaskType from "../TaskTypeBadge/TaskTypeBadge";
 import { useEffect } from "react";
 import { Task } from "../../models/Task";
@@ -30,7 +30,7 @@ export default function TaskList(props: TaskCardProps){
 
     return (
         <div id="task-card-holder">
-            <div id={`task-card-${props.data.id}`} className="task-card" draggable="true">
+            <div id={`task-card-${props.data.id}`} className="task-card-in-column" draggable="true">
                 <div id="card-header">
                     <div id="row-holder">
                         <div id="title-holder" className="card-title-text">{props.data.taskTitle}</div>
