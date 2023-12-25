@@ -1,6 +1,7 @@
-import { TaskData } from "../components/TaskList/TaskList"
+import { Task } from "../models/Task";
 
-export function getDummyTasks(): TaskData[]{
+
+export function getDummyTasks(): Task[]{
     return [
         {
             id: 1,

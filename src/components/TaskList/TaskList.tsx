@@ -1,19 +1,10 @@
 import React from "react";
 import TaskCard from "../TaskCard/TaskCard";
 import "./TaskList.css"
-
-export type TaskData = {
-    id: number;
-    title: string;
-    description: string;
-    startDate: string;
-    endDate: string;
-    status: "to-do" | "in-progress" | "done";
-    type: "feature" | "bug";
-}
+import { Task } from "../../models/Task";
 
 type TaskListProps = {
-    tasks: TaskData[];
+    tasks: Task[];
     columnId: "to-do-column" | "in-progress-column" | "done-column";
 }
 
@@ -32,7 +23,7 @@ export default function TaskList(props: TaskListProps){
         <React.Fragment>
             <ul id="task-card-ul">
                 {tasksToPass.map((task) => {
-                    return <li>
+                    return <li key={task.id}>
                         <TaskCard data={task}/>
                     </li>
                 })}

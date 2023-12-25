@@ -17,7 +17,7 @@
 
 #task-card-holder .task-card{
     width: 90%;
-    height: 120px;
+    height: fit-content;
     flex-shrink: 0;
     border-radius: 5px;
     border: 1px solid #626262;
@@ -43,6 +43,7 @@
     margin-top: 12px;
     display: flex;
     justify-content: center;
+    margin-bottom: 10px;
 }
 #row-holder{
     width: 85%;
