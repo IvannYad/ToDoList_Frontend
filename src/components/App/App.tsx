@@ -6,6 +6,7 @@ import ITaskAPIService from '../../api/ITaskAPIService'
 import TaskAPIService from '../../api/TaskAPIService'
 import React from 'react'
 import { apiUrl } from '../../static-data/StaticData'
+import CreateTaskFrom from '../CreateTaskForm/CreateTaskFrom'
 
 export const TaskAPIServiceContext = React.createContext<ITaskAPIService>(new TaskAPIService(""));
 
@@ -15,12 +16,13 @@ function App() {
   return (
     <TaskAPIServiceContext.Provider value={taskAPIService}>
       <div>
-      <Header />
-      <Main />
-      <Footer />
-      <div id="curtains"></div>
-      <div id="additional-elements-holder"></div>
-    </div>
+        {/* <Header />
+        <Main />
+        <Footer />
+        <div id="curtains"></div>
+        <div id="additional-elements-holder"></div> */}
+        <CreateTaskFrom />
+      </div>
     </TaskAPIServiceContext.Provider>
   )
 }

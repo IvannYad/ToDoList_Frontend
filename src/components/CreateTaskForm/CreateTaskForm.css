@@ -1,0 +1,178 @@
+#task-create-card-holder{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 580px;
+    border-radius: 20px;
+    border: 2px solid #DEDDDD;
+    background: #100F0F;
+    z-index: 10;
+}
+#task-create-card-header{
+    width: 100%;
+    height: 10%;
+    border-radius: 20px 20px 0px 0px;
+    border-bottom: 2px solid #FFF;
+    background: rgba(217, 217, 217, 0.31);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 28px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: normal;
+}
+
+#task-create-form-holder{
+    margin-top: 20px;
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#task-create-form-holder form{
+    margin-top: 7%;
+    height: 100%;
+    width: 90%;
+}
+
+#task-create-form-title-row{
+    height: 17%;
+    width: 100%;
+    color: #A8A8A8;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#task-create-form-time-row{
+    height: 17%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #A8A8A8;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.time-input-holder{
+    height: 100%;
+    width: 50%;
+}
+
+#task-create-form-description-row{
+    height: 33%;
+    width: 100%;
+    color: #A8A8A8;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#task-create-form-type-row{
+    height: 17%;
+    width: 100%;
+    color: #A8A8A8;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+#task-create-form-buttons-row{
+    height: 15%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-holder{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#task-create-form-buttons-row .button-holder button{
+    width: 90%;
+    height: 50%;
+    border-radius: 20px;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-left: -9%;
+}
+  
+#task-create-form-buttons-row .button-holder .create-task-button{
+    color: #38FF58;
+    border: 2px solid #38FF58;
+    background: rgba(255, 255, 255, 0);
+}
+
+#task-create-form-buttons-row .button-holder .create-task-button:hover{
+    background: rgba(59, 255, 42, 0.30);
+}
+
+#task-create-form-buttons-row .button-holder .cancel-creating-task-button{
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    background: rgba(255, 255, 255, 0);
+}
+
+#task-create-form-buttons-row .button-holder .cancel-creating-task-button:hover{
+    background: rgba(234, 240, 233, 0.336);
+}
+
+
+.task-create-from-input{
+    margin-top: 1px;
+    border-radius: 10px;
+    border: 1px solid #A8A8A8;
+    background: #373333;
+    color: #A8A8A8;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+}
+
+.title-input{
+    width: 95%;
+    height: 30px;
+}
+
+.description-input{
+    width: 95%;
+    height: 100px;
+    resize: none;
+}
+
+.time-input{
+    width: 90%;
+    height: 30px;
+}
+
+.type-input{
+    width: 95%;
+    height: 30px;
+}
