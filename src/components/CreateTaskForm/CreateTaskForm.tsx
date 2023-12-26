@@ -1,7 +1,15 @@
+import ReactDOM from "react-dom";
 import "./CreateTaskForm.css"
 
-export default function CreateTaskFrom(){
-    return (
+type CreateTaskFormProps = {
+    hostElement: HTMLElement;
+    isOpen: boolean;
+    closeHandler: () => void;
+}
+
+export default function CreateTaskForm(props: CreateTaskFormProps){
+    if(!props.isOpen) return null;
+    return ReactDOM.createPortal(
         <div id="task-create-card-holder">
             <div id="task-create-card-header">
                 Create task
@@ -38,12 +46,12 @@ export default function CreateTaskFrom(){
                             <button className="create-task-button">Create</button>
                         </div>
                         <div className="button-holder">
-                            <button className="cancel-creating-task-button">Cancel</button>
+                            <button className="cancel-creating-task-button" onClick={() => props.closeHandler()}>Cancel</button>
                         </div>
                     </div>
                 </form>
             </div>
             
-        </div>
+        </div>, props.hostElement
     )   
 }
