@@ -4,16 +4,17 @@ import TaskList from "../TaskList/TaskList";
 import "./Column.css"
 import { Task } from "../../models/Task";
 import { TaskAPIServiceContext } from "../App/App";
+import { OnTasksChangeHandlersContext } from "../Main/Main";
 
 type ColumnProps = {
     id: "to-do-column" | "in-progress-column" | "done-column";
     title: string;
     tasks: Task[];
-    updateNotification: () => void;
 }
 
-export default function Column({id, title, tasks, updateNotification}: ColumnProps){
+export default function Column({id, title, tasks}: ColumnProps){
     const taskAPIService = useContext(TaskAPIServiceContext);
+    const tasksChangeHandlers = useContext(OnTasksChangeHandlersContext);
     let element: HTMLElement;
 
     useEffect(() => {
@@ -21,7 +22,11 @@ export default function Column({id, title, tasks, updateNotification}: ColumnPro
         element.addEventListener("dragover", dragOverHandler);
         element.addEventListener("dragleave", dragLEaveHandler);
         element.addEventListener("drop", dropHandler);
-        console.log("hello");
+        return () => {
+            element.removeEventListener("dragover", dragOverHandler);
+            element.removeEventListener("dragleave", dragLEaveHandler);
+            element.removeEventListener("drop", dropHandler);
+        }
     }, [])
 
     useEffect(() => {
@@ -49,18 +54,15 @@ export default function Column({id, title, tasks, updateNotification}: ColumnPro
             ... oldTask,
             status: newStatus 
         }
-        console.log(newTaskData);
-        // console.log(newTaskData.id);
-        // console.log(task); 
+        
         if(newTaskData.id){
-            taskAPIService.update(+oldTask.id, newTaskData);
+            taskAPIService.update(+oldTask.id, newTaskData, tasksChangeHandlers.onUpdateHandler);
         }
         
         element.classList.remove("drag-over");
         const header = element.getElementsByClassName("column-header")[0];
         header.classList.remove("column-header-drag-over");
         header.classList.add("column-header");
-        updateNotification();
     }
 
     function dragLEaveHandler(event: DragEvent): void {

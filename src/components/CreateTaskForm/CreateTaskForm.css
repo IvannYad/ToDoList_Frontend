@@ -4,7 +4,7 @@
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    width: 500px;
+    width: 600px;
     height: 580px;
     border-radius: 20px;
     border: 2px solid #DEDDDD;
@@ -175,4 +175,13 @@
 .type-input{
     width: 95%;
     height: 30px;
+}
+
+.task-input-error{
+    color: rgba(255, 48, 48, 0.829);
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }

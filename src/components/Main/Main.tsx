@@ -4,7 +4,20 @@ import SearchForm from "../SearchForm/SearchForm";
 import "./Main.css"
 import { Task } from "../../models/Task";
 import { TaskAPIServiceContext } from "../App/App";
+import React from "react";
 
+type TasksChangeHandlers = {
+    onUpdateHandler: () => void;
+    onCreateHandler: () => void;
+    onDeleteHandler: () => void;
+}
+
+
+export const OnTasksChangeHandlersContext = React.createContext<TasksChangeHandlers>({
+    onCreateHandler: () => {},
+    onDeleteHandler: () => {},
+    onUpdateHandler: () => {}
+});
 
 export type DropHandlerProps = {
     event: DragEvent; 
@@ -14,8 +27,10 @@ export type DropHandlerProps = {
 }
 
 export default function Main(){
+    console.log("func start");
     const taskAPIService = useContext(TaskAPIServiceContext);
     const [tasks, setTasks] = useState<Task[]>([]);
+    const [isChanged, setIsChanged] = useState(false);
     useEffect(() => {
         taskAPIService.getAll(null)
             .then(response => {
@@ -23,29 +38,43 @@ export default function Main(){
                     setTasks(response);
                 }
             })
-    }, [tasks])
-
+            setTimeout(() => {}, 10);
+            console.log("useEffect end");
+            setIsChanged(false);
+    }, [isChanged])
+    
     function updateNotificationHandler(){
-        taskAPIService.getAll(null)
-            .then(response => {
-                if(response){
-                    setTasks(response);
-                }
-            })
+        setIsChanged(true);
     }
 
+    function createNotificationHandler(){
+        setIsChanged(true);
+    }
+
+    function deleteNotificationHandler(){
+        setIsChanged(true);
+    }
+    
+    const tasksChangeHandlers: TasksChangeHandlers = {
+        onCreateHandler: createNotificationHandler,
+        onDeleteHandler: deleteNotificationHandler,
+        onUpdateHandler: updateNotificationHandler
+    }
     return (
+        <OnTasksChangeHandlersContext.Provider value={tasksChangeHandlers}>
         <main>
             <div className="main-div">
                 <SearchForm />
             </div>
             <div className="main-div">
                 <div id="column-container">
-                    <Column id="to-do-column" title="Todo" tasks={tasks.filter(task => task.status === "to-do")} updateNotification={updateNotificationHandler}/>
-                    <Column id="in-progress-column" title="In progress" tasks={tasks.filter(task => task.status === "in-progress")} updateNotification={updateNotificationHandler}/>
-                    <Column id="done-column" title="Done" tasks={tasks.filter(task => task.status === "done")} updateNotification={updateNotificationHandler}/>
+                    <Column id="to-do-column" title="Todo" tasks={tasks.filter(task => task.status === "to-do")}/>
+                    <Column id="in-progress-column" title="In progress" tasks={tasks.filter(task => task.status === "in-progress")}/>
+                    <Column id="done-column" title="Done" tasks={tasks.filter(task => task.status === "done")}/>
                 </div>
             </div>
         </main>
+        </OnTasksChangeHandlersContext.Provider>
+        
     )
 }

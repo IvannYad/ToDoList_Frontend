@@ -14,11 +14,11 @@ export default class TaskAPIService implements ITaskAPIService{
         const promise = axios.get(this.url);
         const dataPromise = promise
         .then(response => {
+            console.log(response.data!.result);
             tasksToReturn = response.data!.result;
             if (filter){
                 tasksToReturn = tasksToReturn!.filter((task: Task) => filter(task));
             }
-        
             return tasksToReturn;
         })
         .catch(error => console.log(error))
@@ -34,18 +34,23 @@ export default class TaskAPIService implements ITaskAPIService{
             .catch(error => console.log(error))
         return taskToReturn;
     }
-    create(task: TaskCreate): void {
-        axios.post(this.url, { task })
+    create(task: TaskCreate, onCreateHandler: () => void): void {
+        console.log(task);
+        axios.post(this.url, task)
             .then(res => {
-                console.log(res);
                 console.log(res.data);
+                onCreateHandler();
+            })
+            .catch(error => {
+                console.log(error);
             });
     }
-    update(id: number, newTask: Task): void {
+    update(id: number, newTask: Task, onUpdteHandler: () => void): void {
         console.log(id, newTask);
         axios.put(`${this.url}/${id}`, newTask)
             .then(res => {
                 console.log("MyRes" + res);
+                onUpdteHandler();
             });
     }
     remove(id: number): void {
