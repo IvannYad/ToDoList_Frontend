@@ -15,6 +15,7 @@ export default function DeleteSubmittionMessage(props: DeleteSubmittionMessagePr
     const tasksChangeHandlers = useContext(OnTasksChangeHandlersContext);
     const apiService = useContext(TaskAPIServiceContext);
 
+    // Handler of delete submission.
     function onDeleteSubmitHandler(){
         apiService.remove(props.id, tasksChangeHandlers.onDeleteNotifyHandler);
         const curtainsElement = document.getElementById("curtains") as HTMLElement;
@@ -24,6 +25,7 @@ export default function DeleteSubmittionMessage(props: DeleteSubmittionMessagePr
         rootElement.classList.remove("disable-scrolling");
     }
 
+    // If delete submission message is not invoked, return null.
     if(!props.isOpen) return null;
     return ReactDOM.createPortal(
         <div id="deleteSubmissionMessage">

@@ -20,6 +20,7 @@ export default function TaskCard(props: TaskCardProps){
     const [isUpdateFormOpen, setIsUpdateFromOpen] = useState(false);
     const [isDeleteFormOpen, setIsDeleteFromOpen] = useState(false);
 
+    // Function for handling opening and closing from for updating and delete submission message.
     function openUpdateFormHandler(): void{
         (document.getElementById("task-card") as HTMLElement).style.display = "none";
         setIsUpdateFromOpen(true);
@@ -40,8 +41,11 @@ export default function TaskCard(props: TaskCardProps){
         setIsDeleteFromOpen(false);
     }
 
+    // If task card with full information isn`r invoked return null.
     if(!props.isOpen) return null;
+
     const task: Task = props.data;
+
     return ReactDOM.createPortal(
         <div id="task-card" draggable="true">
             <div id="status-holder">
@@ -76,5 +80,4 @@ export default function TaskCard(props: TaskCardProps){
             <DeleteSubmittionMessage id={props.data.id} hostElement={hostElement} isOpen={isDeleteFormOpen} closeHandler={closeDeleteFormHandler}/>
         </div>
     , props.hostElement)
-    
 }

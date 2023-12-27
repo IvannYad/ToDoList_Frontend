@@ -1,5 +1,4 @@
 import React, { ChangeEvent, FormEvent, useContext, useRef, useState } from "react";
-
 import "./SearchForm.css"
 import { OnTasksChangeHandlersContext } from "../Main/Main";
 
@@ -11,7 +10,8 @@ export default function SearchFrom(props: SearchFormProps){
     const tasksChangeHandlers = useContext(OnTasksChangeHandlersContext);
     const [filter, setFilter] = useState<string>("");
     const filterInput = useRef<HTMLInputElement>(null);
-    console.log(filter);
+    
+    // Handler for input change.
     function onChangeHandler(event: ChangeEvent<HTMLInputElement>){
         event.preventDefault();
         console.log("Setting filter");
@@ -20,6 +20,7 @@ export default function SearchFrom(props: SearchFormProps){
         console.log(`filter after setting: ${filter}`);
     }
 
+    // Handler for form submission.
     function onSubmitHandler(event: FormEvent<HTMLFormElement>){
         event.preventDefault();
         props.updateFiter(filter.toLowerCase());

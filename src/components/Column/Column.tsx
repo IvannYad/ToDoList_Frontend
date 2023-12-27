@@ -29,15 +29,9 @@ export default function Column({id, title, tasks}: ColumnProps){
         }
     }, [])
 
-    useEffect(() => {
-        // async function SetTasks() {
-        //     console.log("TaskUpdate");
-        //     const tasksFromAPI = await taskAPIService.getAll(null);
-        //     }
-        // }
-    })
-
+    // Handler of dran-and-drop.
     function dragOverHandler(event: DragEvent): void {
+        // Add dragging effeects.
         event.preventDefault();
         element.classList.add("drag-over");
         element.getElementsByClassName("column-header")[0]
@@ -47,18 +41,25 @@ export default function Column({id, title, tasks}: ColumnProps){
     function dropHandler(event: DragEvent): void {
         event.preventDefault();
 
+        // Setting new tasks status regarding column id, where tasks is dropped. 
         const newStatus = id === "to-do-column" ? "to-do" : 
             (id === "in-progress-column" ? "in-progress" : "done");
+        
+        // Getting task, that is dragged, from event data.
         const oldTask: Task = JSON.parse(event.dataTransfer!.getData("text/plain"));
+        
+        // Assigning to retieved task new status.
         const newTaskData: Task = {
             ... oldTask,
             status: newStatus 
         }
         
         if(newTaskData.id){
+            // If id is provided, update task
             taskAPIService.update(+oldTask.id, newTaskData, tasksChangeHandlers.onUpdateNotifyHandler);
         }
         
+        // Remove dragging effects
         element.classList.remove("drag-over");
         const header = element.getElementsByClassName("column-header")[0];
         header.classList.remove("column-header-drag-over");
@@ -67,6 +68,7 @@ export default function Column({id, title, tasks}: ColumnProps){
 
     function dragLEaveHandler(event: DragEvent): void {
         event.preventDefault();
+        // Remove dragging effects.
         element.classList.remove("drag-over");
         const header = element.getElementsByClassName("column-header")[0];
         header.classList.remove("column-header-drag-over");

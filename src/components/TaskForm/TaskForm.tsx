@@ -18,6 +18,8 @@ type TaskFormProps = {
 export default function CreateTaskForm(props: TaskFormProps){
     const [task, setTask] = useState<Task>(props.prevTaskData);
     const [formValidator, setFormValidator] = useState(new TaskValidator());
+
+    // useRef return actual value only when input, to which useRef refers, changes  
     const titleInput = useRef<HTMLInputElement>(null);
     const startTimeInput = useRef<HTMLInputElement>(null);
     const endTimeInput = useRef<HTMLInputElement>(null);
@@ -35,7 +37,7 @@ export default function CreateTaskForm(props: TaskFormProps){
         })
     }, []);
 
-
+    // Function for input validation.
     function isTitleValid(): boolean{
         if (!titleInput.current!.value) return true;
         return titleInput.current!.value.length >= 5;
@@ -56,8 +58,10 @@ export default function CreateTaskForm(props: TaskFormProps){
         return descriptionInput.current!.value.length <= 150;
     }
     
+    // If form wasn`t invoken, return null. 
     if(!props.isOpen) return null;
 
+    // Handlers for input change.
     function onTitleChangeHandler(event: ChangeEvent<HTMLInputElement>){
         event.preventDefault();
         titleInput.current!.value = event.target.value;
@@ -104,20 +108,25 @@ export default function CreateTaskForm(props: TaskFormProps){
         setTask({ ...task, type: Converter.stringToTaskType(typeInput.current!.value)});
     }
 
+    // Handler for form submitting.
     function onFormSubmitHandler(event: FormEvent<HTMLFormElement>){
+        // Always call .preventDefault() to aviod unexpected things.
         event.preventDefault();
         if (!formValidator.validate()){
+            // If data in form input field is not valid.
             return;
         }
+
         if(props.type === "create"){
             // Creating task.
             const taskCreate: TaskCreate = {
                 ...task
-            }
+            };
             apiService.create(taskCreate, tasksChangeHandlers.onCreateNotifyHandler);
+            
+            // If task created, remove form and blurry background.
             const curtainsElement = document.getElementById("curtains") as HTMLElement;
             curtainsElement.classList.remove("blurry-rectangle");
-
             const rootElement = document.getElementsByTagName("body")[0] as HTMLElement;
             rootElement.classList.remove("disable-scrolling");
         }
@@ -126,16 +135,13 @@ export default function CreateTaskForm(props: TaskFormProps){
             const updateTask: Task = {
                 ...task,
                 id: +(document.getElementById("task-id-input") as HTMLInputElement).value
-            }
-            console.log(updateTask);
+            };
             apiService.update(updateTask.id, updateTask, tasksChangeHandlers.onUpdateNotifyHandler);
         }
         
-        
+        // When form submitting logic is processed, notify component that holds tasks array about update.
         props.closeHandler();
     }
-
-    console.log(props.prevTaskData);
 
     return ReactDOM.createPortal(
         <div id="task-create-card-holder">

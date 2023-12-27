@@ -8,6 +8,7 @@ export default function AddTaskButton(){
     const [isOpen, setIsOpen] = useState(false);
     const hostElement = document.getElementById("additional-elements-holder") as HTMLElement;
     
+    // Function that handles creating form opening.
     function openHandler(): void{
         const curtainsElement = document.getElementById("curtains") as HTMLElement;
         curtainsElement.classList.add("blurry-rectangle");
@@ -17,6 +18,7 @@ export default function AddTaskButton(){
         setIsOpen(true);
     }
 
+    // Function that handles creating form closing.
     function closeHandler(): void{
         const curtainsElement = document.getElementById("curtains") as HTMLElement;
         curtainsElement.classList.remove("blurry-rectangle");
@@ -25,7 +27,8 @@ export default function AddTaskButton(){
         rootElement.classList.remove("disable-scrolling");
         setIsOpen(false);
     }
-    
+
+    // Get default task with empty property values to pass to form. 
     const taskData: Task = getDefaultTask(); 
     return (
         <div className="add-task-button-holder">

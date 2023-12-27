@@ -17,4 +17,11 @@ export default class TaskValidator{
     addValidation(toAdd: () => boolean){
         this.validationFunctions.push(toAdd);
     }
+
+    remvoeValidation(toRemove: () => boolean){
+        const indexRemoveAt = this.validationFunctions.indexOf(toRemove, 0);
+        if(indexRemoveAt !== -1){
+            this.validationFunctions.splice(indexRemoveAt, 1)
+        }
+    }
 }

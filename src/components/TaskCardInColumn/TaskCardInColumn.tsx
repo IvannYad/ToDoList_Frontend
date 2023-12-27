@@ -21,6 +21,7 @@ export default function TaskCardInColumn(props: TaskCardPropsInColumn){
     const [isOpen, setIsOpen] = useState(false);
     let element;
     
+    // Function for handling drag-and-drop.
     function dragStartHandler(event: DragEvent): void {
         event.dataTransfer!.setData("text/plain", JSON.stringify(props.data));
         console.log(event.dataTransfer!.getData("text/plain"));
@@ -31,6 +32,8 @@ export default function TaskCardInColumn(props: TaskCardPropsInColumn){
         event.preventDefault();
     }
 
+    // Frunction-handler click on task card in column, opens task card wuth full information
+    // and sets blurry background.
     function clickHandler(): void{
         const curtainsElement = document.getElementById("curtains") as HTMLElement;
         curtainsElement.classList.add("blurry-rectangle");
@@ -40,6 +43,7 @@ export default function TaskCardInColumn(props: TaskCardPropsInColumn){
         setIsOpen(true);
     }
 
+    // Function-handler of 'Cancel' click on task card with full information.
     function resetClick(): void{
         const curtainsElement = document.getElementById("curtains") as HTMLElement;
         curtainsElement.classList.remove("blurry-rectangle");
@@ -48,12 +52,14 @@ export default function TaskCardInColumn(props: TaskCardPropsInColumn){
         rootElement.classList.remove("disable-scrolling");
         setIsOpen(false);
     }
+
     useEffect(() => {
         element = document.getElementById(`task-card-${props.data.id}`) as HTMLElement;
         element.addEventListener("dragstart", dragStartHandler);
         element.addEventListener("dragend", dragEndHandler);
     }, [])
 
+    // Data passed to cardwith full information.
     const taskCardProps:TaskCardProps = {
         data: props.data,
         hostElement: document.getElementById("additional-elements-holder") as HTMLElement,
