@@ -9,7 +9,7 @@
     min-height: 50vh;
     display: block;
 }
-.column div{
+.column div, .column button{
     display: block;
 }
 

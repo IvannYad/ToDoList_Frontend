@@ -1,0 +1,134 @@
+.task-card{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 628px;
+    height: 368px;
+    border-radius: 20px;
+    border: 2px solid #DEDDDD;
+    background: #100F0F;
+    z-index: 10;
+}
+
+.task-card #status-holder{
+    width: 100%;
+    height: 31px;
+    display: flex;
+    justify-content: end;
+}
+
+.task-card #status-holder #status{
+    padding-left: 3%;
+    padding-right: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-width: 7%;
+    width: fit-content;
+    border-radius: 0px 20px;
+    border-bottom: 1px solid #DEDDDD;
+    border-left: 1px solid #DEDDDD;
+    background: rgba(82, 252, 99, 0.27);
+    position: relative;
+    right: 0;
+}
+.task-card #card-header{
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: normal;
+}
+.task-card #card-time-display{
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: normal;
+}
+.task-card #card-description-display{
+    min-height: 30%;
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: normal;
+}   
+
+.task-card #card-buttons-display{
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    height: 8%;
+}
+
+.task-card #card-buttons-display #row-holder div{
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.task-card #row-holder{
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button{
+    border-radius: 5px;
+    height: 100%;
+    width: 90px;
+    padding: 0;
+}
+
+.updateButton{
+    border: 2px solid #09ecec;
+    background: #01163500;
+    color: #09ecec;
+}
+
+.updateButton:hover{
+    border: 2px solid #09ecec;
+    background: #62c6ee52;
+}
+
+.deleteButton{
+    border: 2px solid #ff3a3a;
+    background: #01163500;
+    color: #ff3a3a;
+}
+
+.deleteButton:hover{
+    border: 2px solid #ff3a3a;
+    background: #ee626252;
+}
+
+.backToListButton{
+    border: 2px solid #f6feff;
+    background: #01163500;
+    color: #f6feff;
+}
+
+.backToListButton:hover{
+    border: 2px solid #f6feff;
+    background: #fff3f362;
+}

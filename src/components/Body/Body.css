@@ -13,6 +13,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.disable-scrolling{
+  overflow-y: hidden;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -34,12 +38,6 @@ h1 {
   line-height: 1.1;
 }
 
-button:hover{
-  border: 2px solid #7c5cf1;
-  color: #7c5cf1;
-  font-weight: 500;
-}
-
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -52,8 +50,5 @@ button:focus-visible {
   }
   a:hover {
     color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }

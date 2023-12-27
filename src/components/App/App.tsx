@@ -14,13 +14,14 @@ function App() {
   
   return (
     <TaskAPIServiceContext.Provider value={taskAPIService}>
-      <React.Fragment>
+      <div>
       <Header />
       <Main />
       <Footer />
-    </React.Fragment>
+      <div id="curtains"></div>
+      <div id="additional-elements-holder"></div>
+    </div>
     </TaskAPIServiceContext.Provider>
-    
   )
 }
 

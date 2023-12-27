@@ -1,15 +1,24 @@
 import "./TaskCardInColumn.css"
 import TaskType from "../TaskTypeBadge/TaskTypeBadge";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Task } from "../../models/Task";
 import convertToReadableDate from "../../helperFunctions/convertToReadableDate";
+import TaskCard from "../TaskCard/TaskCard";
 
 
-type TaskCardProps = {
+
+type TaskCardPropsInColumn = {
     data: Task;
 }
 
-export default function TaskList(props: TaskCardProps){
+type TaskCardProps = {
+    data: Task;
+    hostElement: HTMLElement;
+    resetHandler: () => void;
+}
+
+export default function TaskCardInColumn(props: TaskCardPropsInColumn){
+    const [isOpen, setIsOpen] = useState(false);
     let element;
     
     function dragStartHandler(event: DragEvent): void {
@@ -22,15 +31,38 @@ export default function TaskList(props: TaskCardProps){
         event.preventDefault();
     }
 
+    function clickHandler(): void{
+        const curtainsElement = document.getElementById("curtains") as HTMLElement;
+        curtainsElement.classList.add("blurry-rectangle");
+        
+        const rootElement = document.getElementsByTagName("body")[0] as HTMLElement;
+        rootElement.classList.add("disable-scrolling");
+        setIsOpen(true);
+    }
+
+    function resetClick(): void{
+        const curtainsElement = document.getElementById("curtains") as HTMLElement;
+        curtainsElement.classList.remove("blurry-rectangle");
+
+        const rootElement = document.getElementsByTagName("body")[0] as HTMLElement;
+        rootElement.classList.remove("disable-scrolling");
+        setIsOpen(false);
+    }
     useEffect(() => {
         element = document.getElementById(`task-card-${props.data.id}`) as HTMLElement;
         element.addEventListener("dragstart", dragStartHandler);
         element.addEventListener("dragend", dragEndHandler);
     }, [])
 
+    const taskCardProps:TaskCardProps = {
+        data: props.data,
+        hostElement: document.getElementById("additional-elements-holder") as HTMLElement,
+        resetHandler: resetClick
+    }
+
     return (
-        <div id="task-card-holder">
-            <div id={`task-card-${props.data.id}`} className="task-card-in-column" draggable="true">
+        <div id="task-card-in-column-holder">
+            <button id={`task-card-${props.data.id}`} className="task-card-in-column" draggable="true" onClick={clickHandler}>
                 <div id="card-header">
                     <div id="row-holder">
                         <div id="title-holder" className="card-title-text">{props.data.taskTitle}</div>
@@ -47,8 +79,8 @@ export default function TaskList(props: TaskCardProps){
                         {props.data.additionalDescription}
                     </div>
                 </div>
-            </div>
-            
+            </button>
+            <TaskCard data={taskCardProps.data} hostElement={taskCardProps.hostElement} isOpen={isOpen} resetHandler={taskCardProps.resetHandler}/>
         </div>
     )
 }
