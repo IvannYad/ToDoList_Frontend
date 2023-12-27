@@ -10,13 +10,15 @@ type TasksChangeHandlers = {
     onUpdateNotifyHandler: () => void;
     onCreateNotifyHandler: () => void;
     onDeleteNotifyHandler: () => void;
+    onSearchNotificationHandler: () => void
 }
 
 
 export const OnTasksChangeHandlersContext = React.createContext<TasksChangeHandlers>({
     onCreateNotifyHandler: () => {},
     onDeleteNotifyHandler: () => {},
-    onUpdateNotifyHandler: () => {}
+    onUpdateNotifyHandler: () => {},
+    onSearchNotificationHandler: () => {}
 });
 
 export type DropHandlerProps = {
@@ -29,10 +31,12 @@ export type DropHandlerProps = {
 export default function Main(){
     console.log("func start");
     const taskAPIService = useContext(TaskAPIServiceContext);
+    const [tasksFilter, setTasksFilter] = useState<string>("");
     const [tasks, setTasks] = useState<Task[]>([]);
     const [isChanged, setIsChanged] = useState(false);
     useEffect(() => {
-        taskAPIService.getAll(null)
+        console.log(tasksFilter);
+        taskAPIService.getAll(filterFunction())
             .then(response => {
                 if(response){
                     setTasks(response);
@@ -43,6 +47,10 @@ export default function Main(){
             setIsChanged(false);
     }, [isChanged])
     
+    function searchNotificationHandler(){
+        setIsChanged(true);
+    }
+
     function updateNotificationHandler(){
         setIsChanged(true);
     }
@@ -55,16 +63,30 @@ export default function Main(){
         setIsChanged(true);
     }
     
+    function filterFunction(): ((task: Task) => boolean) | null{
+        if(!tasksFilter || tasksFilter.trim().length === 0){
+            return null;
+        }
+
+        return (task: Task) => {
+            return task.taskTitle.toLowerCase().includes(tasksFilter)
+            || task.status.toLowerCase().includes(tasksFilter)
+            || task.type.toLowerCase().includes(tasksFilter);
+        
+        }
+    }
+
     const tasksChangeHandlers: TasksChangeHandlers = {
         onCreateNotifyHandler: createNotificationHandler,
         onDeleteNotifyHandler: deleteNotificationHandler,
-        onUpdateNotifyHandler: updateNotificationHandler
+        onUpdateNotifyHandler: updateNotificationHandler,
+        onSearchNotificationHandler: searchNotificationHandler
     }
     return (
         <OnTasksChangeHandlersContext.Provider value={tasksChangeHandlers}>
         <main>
             <div className="main-div">
-                <SearchForm />
+                <SearchForm updateFiter={setTasksFilter}/>
             </div>
             <div className="main-div">
                 <div id="column-container">
