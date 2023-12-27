@@ -1,0 +1,116 @@
+#deleteSubmissionMessage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 470px;
+    height: 306px;
+    border-radius: 20px;
+    border: 1px solid #DEDDDD;
+    background: #100F0F;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+}
+
+#deleteSubmissionMessage #content-holder{
+    display: block;
+    height: 95%;
+    width: 75%;
+}
+
+#deleteSubmissionMessage #content-holder #delete-badge-holder{
+    height: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#deleteSubmissionMessage #content-holder #delete-text-holder{
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FF3838;
+    font-family: Inter;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#deleteSubmissionMessage #content-holder #delete-buttons-holder{
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #FF3838;
+    font-size: 120px;
+} 
+.red-circle{
+    width: 120px;
+    height: 120px;
+    background-color: #FF3838;
+}
+
+.black-circle{
+    width: 110px;
+    height: 110px;
+    background-color: #100F0F;
+}
+
+.black-circle p{
+    margin-top: -12px;
+    margin-bottom: 0px;
+}
+
+#deleteSubmissionMessage #content-holder #delete-buttons-holder .button-holder{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#confirm-delete-task{
+    width: 140px;
+    height: 35px;
+    border-radius: 20px;
+    border: 2px solid #FF3838;
+    background-color: rgba(255, 255, 255, 0);
+    color: #FF3838;
+    font-family: Inter;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    }
+
+#confirm-delete-task:hover{
+    background: rgba(255, 47, 47, 0.26);
+}
+
+#cancel-delete-task{
+    width: 140px;
+    height: 35px;
+    border-radius: 20px;
+    border: 2px solid #ffffff;
+    background-color: rgba(255, 255, 255, 0);
+    color: #ffffff;
+    font-family: Inter;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    }
+
+#cancel-delete-task:hover{
+    background: rgba(255, 255, 255, 0.24);
+}

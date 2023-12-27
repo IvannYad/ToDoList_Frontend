@@ -1,19 +1,20 @@
-.task-card{
+#task-card{
     width: 628px;
     height: 368px;
     border-radius: 20px;
     border: 2px solid #DEDDDD;
     background: #100F0F;
+    z-index: 20;
 }
 
-.task-card #status-holder{
+#task-card #status-holder{
     width: 100%;
     height: 31px;
     display: flex;
     justify-content: end;
 }
 
-.task-card #status-holder #status{
+#task-card #status-holder #status{
     padding-left: 3%;
     padding-right: 3%;
     display: flex;
@@ -29,7 +30,7 @@
     position: relative;
     right: 0;
 }
-.task-card #card-header{
+#task-card #card-header{
     width: 100%;
     margin-top: 5%;
     display: flex;
@@ -41,7 +42,7 @@
     font-weight: 500;
     line-height: normal;
 }
-.task-card #card-time-display{
+#task-card #card-time-display{
     margin-top: 5%;
     display: flex;
     justify-content: center;
@@ -52,7 +53,7 @@
     font-weight: 500;
     line-height: normal;
 }
-.task-card #card-description-display{
+#task-card #card-description-display{
     min-height: 30%;
     width: 100%;
     margin-top: 5%;
@@ -66,7 +67,7 @@
     line-height: normal;
 }   
 
-.task-card #card-buttons-display{
+#task-card #card-buttons-display{
     width: 100%;
     margin-top: 5%;
     display: flex;
@@ -74,14 +75,14 @@
     height: 8%;
 }
 
-.task-card #card-buttons-display #row-holder div{
+#task-card #card-buttons-display #row-holder div{
     width: 70%;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.task-card #row-holder{
+#task-card #row-holder{
     width: 75%;
     display: flex;
     justify-content: space-between;
