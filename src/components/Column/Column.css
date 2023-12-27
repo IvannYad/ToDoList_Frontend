@@ -1,9 +1,8 @@
 .column{
-    width: 25vw;
+    width: 27vw;
     height: fit-content;
     flex-shrink: 0;
     border-radius: 20px;
-    border: 2px solid #565656;
     border-top: 0px;
     background: #0E0D0D;
     min-height: 50vh;
@@ -20,7 +19,6 @@
     flex-shrink: 0;
     border-radius: 20px 20px 0px 0px;
     margin-top: 0px;
-    color: #0E0D0D;
     font-family: Inter;
     font-size: 1.4rem;
     font-weight: 700;
@@ -30,37 +28,53 @@
     justify-content: center;
 }
 
+
 .content-holder{
     display: inline;
 }
 @layer higher {
+    #to-do-column{
+        border: solid 1px #38FF40;
+    }
+    
+    #in-progress-column{
+        border: solid 1px #FFD233;
+    }
+    
+    #done-column{
+        border: solid 1px #b354fc;
+    }
+
     #to-do-column .column-header{
         border-radius: 20px 20px 0px 0px;
         border-top: 1px solid #38FF40;
         border-right: 1px solid #38FF40;
         border-left: 1px solid #38FF40;
-        background: rgba(19, 185, 5, 0.61);
+        color: #38FF40;
+        background: rgba(61, 252, 44, 0.274);
     }
     
     #in-progress-column .column-header{
         border-top: 1px solid #FFD233;
         border-right: 1px solid #FFD233;
         border-left: 1px solid #FFD233;
-        background: rgba(255, 184, 0, 0.72);
+        color: #FFD233;
+        background: rgba(255, 207, 84, 0.322);
     }
     
     #done-column .column-header{
-        border-top: 1px solid #8D0FF0;
-        border-right: 1px solid #8D0FF0;
-        border-left: 1px solid #8D0FF0;
-        background: rgba(141, 15, 240, 0.61);
+        border-top: 1px solid #b354fc;
+        border-right: 1px solid #b354fc;
+        border-left: 1px solid #b354fc;
+        color: #b354fc;
+        background: rgba(165, 49, 253, 0.322);
     }
     
     
   }
 .drag-over{
     border-radius: 25px;
-    border: 2px solid #5763ff;
+    border: 3px solid #5763ff;
     z-index: 10;
 }
 
