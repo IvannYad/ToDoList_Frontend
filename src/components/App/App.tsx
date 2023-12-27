@@ -5,12 +5,11 @@ import Main from '../Main/Main'
 import ITaskAPIService from '../../api/ITaskAPIService'
 import TaskAPIService from '../../api/TaskAPIService'
 import React from 'react'
-import { apiUrl } from '../../static-data/StaticData'
 
 export const TaskAPIServiceContext = React.createContext<ITaskAPIService>(new TaskAPIService(""));
 
 function App() {
-  const taskAPIService: ITaskAPIService = new TaskAPIService(apiUrl);
+  const taskAPIService: ITaskAPIService = new TaskAPIService(import.meta.env.VITE_API_URL);
   
   return (
     <TaskAPIServiceContext.Provider value={taskAPIService}>
