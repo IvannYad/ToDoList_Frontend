@@ -1,15 +1,9 @@
 .task-card{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
     width: 628px;
     height: 368px;
     border-radius: 20px;
     border: 2px solid #DEDDDD;
     background: #100F0F;
-    z-index: 10;
 }
 
 .task-card #status-holder{

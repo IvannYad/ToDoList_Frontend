@@ -15,12 +15,12 @@ function App() {
   return (
     <TaskAPIServiceContext.Provider value={taskAPIService}>
       <div>
-      <Header />
-      <Main />
-      <Footer />
-      <div id="curtains"></div>
-      <div id="additional-elements-holder"></div>
-    </div>
+        <Header />
+        <Main />
+        <Footer />
+        <div id="curtains"></div>
+        <div id="additional-elements-holder"></div>
+      </div>
     </TaskAPIServiceContext.Provider>
   )
 }

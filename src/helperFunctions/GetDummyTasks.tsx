@@ -50,3 +50,17 @@ export function getDummyTasks(): Task[]{
         },
     ]
 }
+
+export function getDefaultTask(): Task
+{
+    return {
+        id: 0,
+        taskTitle: "",
+        additionalDescription: "",
+        taskStartTime: "",
+        taskEndTime: "",
+        status: "to-do",
+        type: "feature",
+    }
+}
+
