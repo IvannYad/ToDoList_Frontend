@@ -34,23 +34,23 @@ export default class TaskAPIService implements ITaskAPIService{
             .catch(error => console.log(error))
         return taskToReturn;
     }
-    create(task: TaskCreate, onCreateHandler: () => void): void {
+    create(task: TaskCreate, onCreateNotifyHandler: () => void): void {
         console.log(task);
         axios.post(this.url, task)
             .then(res => {
                 console.log(res.data);
-                onCreateHandler();
+                onCreateNotifyHandler();
             })
             .catch(error => {
                 console.log(error);
             });
     }
-    update(id: number, newTask: Task, onUpdteHandler: () => void): void {
+    update(id: number, newTask: Task, onUpdteNotifyHandler: () => void): void {
         console.log(id, newTask);
         axios.put(`${this.url}/${id}`, newTask)
             .then(res => {
                 console.log("MyRes" + res);
-                onUpdteHandler();
+                onUpdteNotifyHandler();
             });
     }
     remove(id: number): void {

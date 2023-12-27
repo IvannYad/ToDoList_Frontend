@@ -1,4 +1,4 @@
-import { Task, TaskCreate } from "../models/Task";
+import { Task } from "../models/Task";
 
 
 export function getDummyTasks(): Task[]{
@@ -54,24 +54,13 @@ export function getDummyTasks(): Task[]{
 export function getDefaultTask(): Task
 {
     return {
-        id: 1,
-        taskTitle: "Task1",
-        additionalDescription: "Lorem Ipsun dolores...",
-        taskStartTime: "11.11.1111",
-        taskEndTime: "22.22.2222",
+        id: 0,
+        taskTitle: "",
+        additionalDescription: "",
+        taskStartTime: "",
+        taskEndTime: "",
         status: "to-do",
         type: "feature",
     }
 }
 
-export function getDefaultTaskCreate(): TaskCreate 
-{
-    return {
-        taskTitle: "Task1",
-        additionalDescription: "Lorem Ipsun dolores...",
-        taskStartTime: "11.11.1111",
-        taskEndTime: "22.22.2222",
-        status: "to-do",
-        type: "feature",
-    }
-}

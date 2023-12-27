@@ -1,6 +1,8 @@
 import { useState } from "react";
-import CreateTaskForm from "../CreateTaskForm/CreateTaskForm"
+import TaskForm from "../TaskForm/TaskForm"
 import "./AddTaskButton.css"
+import { Task } from "../../models/Task";
+import { getDefaultTask } from "../../helperFunctions/GetDummyTasks";
 
 export default function AddTaskButton(){
     const [isOpen, setIsOpen] = useState(false);
@@ -24,11 +26,11 @@ export default function AddTaskButton(){
         setIsOpen(false);
     }
     
-    
+    const taskData: Task = getDefaultTask(); 
     return (
         <div className="add-task-button-holder">
             <button className="add-task-button button-on-board" onClick={() => openHandler()}>+</button>
-            <CreateTaskForm hostElement={hostElement} isOpen={isOpen} closeHandler={closeHandler}/>
+            <TaskForm type="create" hostElement={hostElement} isOpen={isOpen} closeHandler={closeHandler} prevTaskData={taskData}/>
         </div>
         
     )   

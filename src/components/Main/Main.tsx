@@ -7,16 +7,16 @@ import { TaskAPIServiceContext } from "../App/App";
 import React from "react";
 
 type TasksChangeHandlers = {
-    onUpdateHandler: () => void;
-    onCreateHandler: () => void;
-    onDeleteHandler: () => void;
+    onUpdateNotifyHandler: () => void;
+    onCreateNotifyHandler: () => void;
+    onDeleteNotifyHandler: () => void;
 }
 
 
 export const OnTasksChangeHandlersContext = React.createContext<TasksChangeHandlers>({
-    onCreateHandler: () => {},
-    onDeleteHandler: () => {},
-    onUpdateHandler: () => {}
+    onCreateNotifyHandler: () => {},
+    onDeleteNotifyHandler: () => {},
+    onUpdateNotifyHandler: () => {}
 });
 
 export type DropHandlerProps = {
@@ -56,9 +56,9 @@ export default function Main(){
     }
     
     const tasksChangeHandlers: TasksChangeHandlers = {
-        onCreateHandler: createNotificationHandler,
-        onDeleteHandler: deleteNotificationHandler,
-        onUpdateHandler: updateNotificationHandler
+        onCreateNotifyHandler: createNotificationHandler,
+        onDeleteNotifyHandler: deleteNotificationHandler,
+        onUpdateNotifyHandler: updateNotificationHandler
     }
     return (
         <OnTasksChangeHandlersContext.Provider value={tasksChangeHandlers}>

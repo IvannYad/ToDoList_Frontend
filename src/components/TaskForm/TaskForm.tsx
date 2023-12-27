@@ -1,29 +1,30 @@
 import ReactDOM from "react-dom";
-import "./CreateTaskForm.css"
+import "./TaskForm.css"
 import { ChangeEvent, FormEvent, useContext, useEffect, useRef, useState } from "react";
-import { TaskCreate } from "../../models/Task";
-import { getDefaultTaskCreate } from "../../helperFunctions/GetDummyTasks";
+import { Task, TaskCreate } from "../../models/Task";
 import TaskValidator from "../../services/TaskValidator";
 import { Converter } from "../../services/Converter";
-import { TaskAPIServiceContext } from "../App/App";
 import { OnTasksChangeHandlersContext } from "../Main/Main";
+import { TaskAPIServiceContext } from "../App/App";
 
-type CreateTaskFormProps = {
+type TaskFormProps = {
     hostElement: HTMLElement;
     isOpen: boolean;
     closeHandler: () => void;
+    type: "create" | "update";
+    prevTaskData: Task;
 }
 
-export default function CreateTaskForm(props: CreateTaskFormProps){
-    const [task, setTask] = useState<TaskCreate>(getDefaultTaskCreate());
+export default function CreateTaskForm(props: TaskFormProps){
+    const [task, setTask] = useState<Task>(props.prevTaskData);
     const [formValidator, setFormValidator] = useState(new TaskValidator());
     const titleInput = useRef<HTMLInputElement>(null);
     const startTimeInput = useRef<HTMLInputElement>(null);
     const endTimeInput = useRef<HTMLInputElement>(null);
     const descriptionInput = useRef<HTMLTextAreaElement>(null);
     const typeInput = useRef<HTMLSelectElement>(null);
-    const apiService = useContext(TaskAPIServiceContext);
     const tasksChangeHandlers = useContext(OnTasksChangeHandlersContext);
+    const apiService = useContext(TaskAPIServiceContext);
 
     useEffect(() => {
         setFormValidator((prev) => {
@@ -59,6 +60,7 @@ export default function CreateTaskForm(props: CreateTaskFormProps){
 
     function onTitleChangeHandler(event: ChangeEvent<HTMLInputElement>){
         event.preventDefault();
+        titleInput.current!.value = event.target.value;
         if(!isTitleValid()){
             document.getElementById("title-input-error")!.innerHTML = "Title minimum length is 5";
             return;
@@ -107,61 +109,83 @@ export default function CreateTaskForm(props: CreateTaskFormProps){
         if (!formValidator.validate()){
             return;
         }
-        apiService.create(task, tasksChangeHandlers.onCreateHandler);
-        const curtainsElement = document.getElementById("curtains") as HTMLElement;
-        curtainsElement.classList.remove("blurry-rectangle");
+        if(props.type === "create"){
+            // Creating task.
+            const taskCreate: TaskCreate = {
+                ...task
+            }
+            apiService.create(taskCreate, tasksChangeHandlers.onCreateNotifyHandler);
+            const curtainsElement = document.getElementById("curtains") as HTMLElement;
+            curtainsElement.classList.remove("blurry-rectangle");
 
-        const rootElement = document.getElementsByTagName("body")[0] as HTMLElement;
-        rootElement.classList.remove("disable-scrolling");
+            const rootElement = document.getElementsByTagName("body")[0] as HTMLElement;
+            rootElement.classList.remove("disable-scrolling");
+        }
+        else{
+            // Updating task.
+            const updateTask: Task = {
+                ...task,
+                id: +(document.getElementById("task-id-input") as HTMLInputElement).value
+            }
+            console.log(updateTask);
+            apiService.update(updateTask.id, updateTask, tasksChangeHandlers.onUpdateNotifyHandler);
+        }
+        
+        
         props.closeHandler();
     }
 
+    console.log(props.prevTaskData);
 
     return ReactDOM.createPortal(
         <div id="task-create-card-holder">
             <div id="task-create-card-header">
-                Create task
+                {props.type === "create" ? "Create Task" : "Update Task"}
             </div>
             <div id="task-create-form-holder">
                 <form id="create-task-form" onSubmit={(event) => onFormSubmitHandler(event)}>
+                    <input id="task-id-input" type="number" value={props.prevTaskData.id} hidden/>
                     <div id="task-create-form-title-row">
                         <label htmlFor="title-input-field">Title</label>
                         <input id="title-input-field" className="task-create-from-input title-input" 
                             name="taskTitle" onChange={(event) => onTitleChangeHandler(event)} 
-                            ref={titleInput} required/>
+                            ref={titleInput} defaultValue={props.prevTaskData.taskTitle} required/>
                         <span id="title-input-error" className="task-input-error"></span>
                     </div>
                     <div id="task-create-form-time-row">
                         <div className="time-input-holder">
                             <label htmlFor="start-time-input-field">Start time</label>
                             <input id="start-time-input-field" type="datetime-local" className="task-create-from-input time-input" 
-                                name="taskStartTime" ref={startTimeInput} onChange={(event) => onTimeChangeHandler(event, "start-time-input-error")} required/>
+                                name="taskStartTime" ref={startTimeInput} onChange={(event) => onTimeChangeHandler(event, "start-time-input-error")}
+                                defaultValue={props.prevTaskData.taskStartTime} required/>
                             <div id="start-time-input-error" className="task-input-error"></div>
                         </div>
                         <div className="time-input-holder">
                             <label htmlFor="end-time-input-field">End time</label>
                             <input id="end-time-input-field" type="datetime-local" className="task-create-from-input time-input" 
-                                name="taskEndTime" ref={endTimeInput} onChange={(event) => onTimeChangeHandler(event, "end-time-input-error")} required/>
+                                name="taskEndTime" ref={endTimeInput} onChange={(event) => onTimeChangeHandler(event, "end-time-input-error")}
+                                defaultValue={props.prevTaskData.taskEndTime} required/>
                             <div id="end-time-input-error" className="task-input-error"></div>
                         </div>
                     </div>
                     <div id="task-create-form-description-row">
                         <label htmlFor="description-input-field">Description</label>
                         <textarea id="description-input-field" rows={5} className="task-create-from-input description-input" 
-                        name="additionalDescription" ref={descriptionInput} onChange={(event) => onDescriptionChangeHandler(event)} required></textarea>
+                        name="additionalDescription" ref={descriptionInput} onChange={(event) => onDescriptionChangeHandler(event)}
+                        defaultValue={props.prevTaskData.additionalDescription} required></textarea>
                         <div id="description-input-error" className="task-input-error"></div>
                     </div>
                     <div id="task-create-form-type-row">
                         <label htmlFor="type-input-field">Type</label>
                         <select id="type-input-field" className="task-create-from-input type-input"
-                         name="type" ref={typeInput} onChange={(event) => onTypeChangeHandler(event)}>
+                         name="type" ref={typeInput} onChange={(event) => onTypeChangeHandler(event)} defaultValue={props.prevTaskData.type}>
                             <option value="feature" className="type-options">Feature</option>
                             <option value="bug" className="type-options">Bug</option>
                         </select>
                     </div>
                     <div id="task-create-form-buttons-row">
                         <div className="button-holder">
-                            <button type="submit" className="create-task-button">Create</button>
+                            <button type="submit" className="create-task-button">{props.type === "create" ? "Create Task" : "Update Task"}</button>
                         </div>
                         <div className="button-holder">
                             <button type="submit" className="cancel-creating-task-button" onClick={() => props.closeHandler()}>Cancel</button>

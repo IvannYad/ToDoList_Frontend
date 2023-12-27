@@ -56,7 +56,7 @@ export default function Column({id, title, tasks}: ColumnProps){
         }
         
         if(newTaskData.id){
-            taskAPIService.update(+oldTask.id, newTaskData, tasksChangeHandlers.onUpdateHandler);
+            taskAPIService.update(+oldTask.id, newTaskData, tasksChangeHandlers.onUpdateNotifyHandler);
         }
         
         element.classList.remove("drag-over");
