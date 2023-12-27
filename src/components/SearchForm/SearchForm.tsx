@@ -1,10 +1,35 @@
-import "./SearchForm.css"
+import React, { ChangeEvent, FormEvent, useContext, useRef, useState } from "react";
 
-export default function SearchFrom(){
+import "./SearchForm.css"
+import { OnTasksChangeHandlersContext } from "../Main/Main";
+
+type SearchFormProps = {
+    updateFiter: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function SearchFrom(props: SearchFormProps){
+    const tasksChangeHandlers = useContext(OnTasksChangeHandlersContext);
+    const [filter, setFilter] = useState<string>("");
+    const filterInput = useRef<HTMLInputElement>(null);
+    console.log(filter);
+    function onChangeHandler(event: ChangeEvent<HTMLInputElement>){
+        event.preventDefault();
+        console.log("Setting filter");
+        setFilter(filterInput.current!.value);
+        console.log(filterInput.current!.value);
+        console.log(`filter after setting: ${filter}`);
+    }
+
+    function onSubmitHandler(event: FormEvent<HTMLFormElement>){
+        event.preventDefault();
+        props.updateFiter(filter.toLowerCase());
+        tasksChangeHandlers.onSearchNotificationHandler();
+    }
+
     return (
-        <form id="search-form">
-            <input type="text" id="input" placeholder="Filter by name, status, type"/>
-            <button id="button" className="button-on-board">Search</button>
+        <form onSubmit={(event) => onSubmitHandler(event)} id="search-form">
+            <input onChange={onChangeHandler} type="text" ref={filterInput} id="input" placeholder="Filter by name, status, type"/>
+            <button type="submit" id="button" className="button-on-board">Search</button>
         </form>
     )
 }
