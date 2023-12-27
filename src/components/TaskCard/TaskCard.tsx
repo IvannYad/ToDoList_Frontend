@@ -73,7 +73,7 @@ export default function TaskCard(props: TaskCardProps){
                 </div>
             </div>
             <TaskForm type="update" hostElement={hostElement} isOpen={isUpdateFormOpen} closeHandler={closeUpdateFormHandler} prevTaskData={props.data}/>
-            <DeleteSubmittionMessage hostElement={hostElement} isOpen={isDeleteFormOpen} closeHandler={closeDeleteFormHandler}/>
+            <DeleteSubmittionMessage id={props.data.id} hostElement={hostElement} isOpen={isDeleteFormOpen} closeHandler={closeDeleteFormHandler}/>
         </div>
     , props.hostElement)
     

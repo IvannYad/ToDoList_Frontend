@@ -53,11 +53,15 @@ export default class TaskAPIService implements ITaskAPIService{
                 onUpdteNotifyHandler();
             });
     }
-    remove(id: number): void {
+    remove(id: number, onDeleteNotifyHandler: () => void): void {
         axios.delete(`${this.url}/${id}`)
       .then(res => {
         console.log(res);
         console.log(res.data);
+        onDeleteNotifyHandler();
+      })
+      .catch(error =>{
+        console.log(error);
       })
     }
 

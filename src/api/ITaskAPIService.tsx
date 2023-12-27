@@ -6,5 +6,5 @@ export default interface ITaskAPIService{
     get(id: number): Task;
     create(task: TaskCreate, onCreateNotifyHandler: () => void): void;
     update(id: number, newTask: Task, onUpdteNotifyHandler: () => void): void;
-    remove(id: number): void;
+    remove(id: number, onDeleteNotifyHandler: () => void): void;
 }

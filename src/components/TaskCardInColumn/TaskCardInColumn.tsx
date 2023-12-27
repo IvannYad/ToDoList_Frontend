@@ -1,6 +1,6 @@
 import "./TaskCardInColumn.css"
 import TaskType from "../TaskTypeBadge/TaskTypeBadge";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Task } from "../../models/Task";
 import convertToReadableDate from "../../helperFunctions/convertToReadableDate";
 import TaskCard from "../TaskCard/TaskCard";
