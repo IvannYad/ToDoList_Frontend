@@ -5,7 +5,6 @@ import "./Main.css"
 import { Task } from "../../models/Task";
 import { TaskAPIServiceContext } from "../App/App";
 import React from "react";
-import DeleteSubmittionMessage from "../DeleteSubmittionMessage/DeleteSubmittionMessage";
 
 type TasksChangeHandlers = {
     onUpdateNotifyHandler: () => void;
@@ -64,7 +63,7 @@ export default function Main(){
     return (
         <OnTasksChangeHandlersContext.Provider value={tasksChangeHandlers}>
         <main>
-            {/* <div className="main-div">
+            <div className="main-div">
                 <SearchForm />
             </div>
             <div className="main-div">
@@ -73,8 +72,7 @@ export default function Main(){
                     <Column id="in-progress-column" title="In progress" tasks={tasks.filter(task => task.status === "in-progress")}/>
                     <Column id="done-column" title="Done" tasks={tasks.filter(task => task.status === "done")}/>
                 </div>
-            </div> */}
-            <DeleteSubmittionMessage />
+            </div>
         </main>
         </OnTasksChangeHandlersContext.Provider>
         

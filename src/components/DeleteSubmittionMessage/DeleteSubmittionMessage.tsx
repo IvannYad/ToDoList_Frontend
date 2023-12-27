@@ -1,7 +1,15 @@
+import ReactDOM from "react-dom";
 import "./DeleteSubmittionMessage.css"
 
-export default function DeleteSubmittionMessage(){
-    return (
+type DeleteSubmittionMessageProps = {
+    hostElement: HTMLElement;
+    isOpen: boolean;
+    closeHandler: () => void;
+}
+
+export default function DeleteSubmittionMessage(props: DeleteSubmittionMessageProps){
+    if(!props.isOpen) return null;
+    return ReactDOM.createPortal(
         <div id="deleteSubmissionMessage">
             <div id="content-holder">
                 <div id="delete-badge-holder">
@@ -19,10 +27,10 @@ export default function DeleteSubmittionMessage(){
                         <button id="confirm-delete-task">Delete</button>
                     </div>
                     <div className="button-holder">
-                        <button id="cancel-delete-task">Cancel</button>
+                        <button id="cancel-delete-task" onClick={() => props.closeHandler()}>Cancel</button>
                     </div>
                     </div>
             </div>
-        </div>
+        </div>, props.hostElement
     )
 }

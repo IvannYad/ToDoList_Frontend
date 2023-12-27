@@ -5,6 +5,7 @@ import TaskType from "../TaskTypeBadge/TaskTypeBadge";
 import "./TaskCard.css"
 import TaskForm from "../TaskForm/TaskForm";
 import { useState } from "react";
+import DeleteSubmittionMessage from "../DeleteSubmittionMessage/DeleteSubmittionMessage";
 
 
 type TaskCardProps = {
@@ -16,29 +17,33 @@ type TaskCardProps = {
 
 export default function TaskCard(props: TaskCardProps){
     const hostElement = document.getElementById("additional-elements-holder") as HTMLElement;
-    const [isUpdateFromOpen, setIsUpdateFromOpen] = useState(false);
-    //const [isDeleteFromOpen, setIsDeleteFromOpen] = useState(false);
+    const [isUpdateFormOpen, setIsUpdateFromOpen] = useState(false);
+    const [isDeleteFormOpen, setIsDeleteFromOpen] = useState(false);
 
-    function openUpdateFromHandler(): void{
+    function openUpdateFormHandler(): void{
+        (document.getElementById("task-card") as HTMLElement).style.display = "none";
         setIsUpdateFromOpen(true);
     }
 
-    function closeUpdateFromHandler(): void{
+    function closeUpdateFormHandler(): void{
+        (document.getElementById("task-card") as HTMLElement).style.display = "block";
         setIsUpdateFromOpen(false);
     }
 
-    // function openDeleteFromHandler(): void{
-    //     setIsDeleteFromOpen(true);
-    // }
+    function openDeleteFormHandler(): void{
+        (document.getElementById("task-card") as HTMLElement).style.display = "none";
+        setIsDeleteFromOpen(true);
+    }
 
-    // function closeDeleteFromHandler(): void{
-    //     setIsDeleteFromOpen(false);
-    // }
+    function closeDeleteFormHandler(): void{
+        (document.getElementById("task-card") as HTMLElement).style.display = "block";
+        setIsDeleteFromOpen(false);
+    }
 
     if(!props.isOpen) return null;
     const task: Task = props.data;
     return ReactDOM.createPortal(
-        <div className="task-card" draggable="true">
+        <div id="task-card" draggable="true">
             <div id="status-holder">
                 <div id="status">{task.status}</div>
             </div>
@@ -61,13 +66,14 @@ export default function TaskCard(props: TaskCardProps){
             <div id="card-buttons-display">
                 <div id="row-holder" className="card-description-text">
                     <div>
-                        <button className="button updateButton" onClick={() => openUpdateFromHandler()}>Update</button>
-                        <button className="button deleteButton">Delete</button>
+                        <button className="button updateButton" onClick={() => openUpdateFormHandler()}>Update</button>
+                        <button className="button deleteButton" onClick={() => openDeleteFormHandler()}>Delete</button>
                         <button className="button backToListButton" onClick={() => props.resetHandler()}>Back to list</button>
                     </div>
                 </div>
             </div>
-            <TaskForm type="update" hostElement={hostElement} isOpen={isUpdateFromOpen} closeHandler={closeUpdateFromHandler} prevTaskData={props.data}/>
+            <TaskForm type="update" hostElement={hostElement} isOpen={isUpdateFormOpen} closeHandler={closeUpdateFormHandler} prevTaskData={props.data}/>
+            <DeleteSubmittionMessage hostElement={hostElement} isOpen={isDeleteFormOpen} closeHandler={closeDeleteFormHandler}/>
         </div>
     , props.hostElement)
     
