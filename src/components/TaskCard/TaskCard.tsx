@@ -16,20 +16,24 @@ type TaskCardProps = {
 
 export default function TaskCard(props: TaskCardProps){
     const hostElement = document.getElementById("additional-elements-holder") as HTMLElement;
-    const [isOpen, setIsOpen] = useState(false);
+    const [isUpdateFromOpen, setIsUpdateFromOpen] = useState(false);
+    //const [isDeleteFromOpen, setIsDeleteFromOpen] = useState(false);
 
-    function openHandler(): void{
-        const curtainsElement = document.getElementById("curtains") as HTMLElement;
-        curtainsElement.classList.add("blurry-rectangle");
-        
-        const rootElement = document.getElementsByTagName("body")[0] as HTMLElement;
-        rootElement.classList.add("disable-scrolling");
-        setIsOpen(true);
+    function openUpdateFromHandler(): void{
+        setIsUpdateFromOpen(true);
     }
 
-    function closeHandler(): void{
-        setIsOpen(false);
+    function closeUpdateFromHandler(): void{
+        setIsUpdateFromOpen(false);
     }
+
+    // function openDeleteFromHandler(): void{
+    //     setIsDeleteFromOpen(true);
+    // }
+
+    // function closeDeleteFromHandler(): void{
+    //     setIsDeleteFromOpen(false);
+    // }
 
     if(!props.isOpen) return null;
     const task: Task = props.data;
@@ -57,13 +61,13 @@ export default function TaskCard(props: TaskCardProps){
             <div id="card-buttons-display">
                 <div id="row-holder" className="card-description-text">
                     <div>
-                        <button className="button updateButton" onClick={() => openHandler()}>Update</button>
+                        <button className="button updateButton" onClick={() => openUpdateFromHandler()}>Update</button>
                         <button className="button deleteButton">Delete</button>
                         <button className="button backToListButton" onClick={() => props.resetHandler()}>Back to list</button>
                     </div>
                 </div>
             </div>
-            <TaskForm type="update" hostElement={hostElement} isOpen={isOpen} closeHandler={closeHandler} prevTaskData={props.data}/>
+            <TaskForm type="update" hostElement={hostElement} isOpen={isUpdateFromOpen} closeHandler={closeUpdateFromHandler} prevTaskData={props.data}/>
         </div>
     , props.hostElement)
     
