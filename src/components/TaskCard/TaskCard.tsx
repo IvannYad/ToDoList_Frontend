@@ -68,7 +68,7 @@ export default function TaskCard(props: TaskCardProps){
                 </div>
             </div>
             <div id="card-buttons-display">
-                <div id="row-holder" className="card-description-text">
+                <div id="row-holder">
                     <div>
                         <button className="button updateButton" onClick={() => openUpdateFormHandler()}>Update</button>
                         <button className="button deleteButton" onClick={() => openDeleteFormHandler()}>Delete</button>

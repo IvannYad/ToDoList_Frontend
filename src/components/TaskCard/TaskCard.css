@@ -54,7 +54,7 @@
     line-height: normal;
 }
 #task-card #card-description-display{
-    min-height: 30%;
+    min-height: 25%;
     width: 100%;
     margin-top: 5%;
     display: flex;
@@ -72,11 +72,11 @@
     margin-top: 5%;
     display: flex;
     justify-content: center;
-    height: 8%;
+    height: 10%;
 }
 
 #task-card #card-buttons-display #row-holder div{
-    width: 70%;
+    width: 90%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -89,9 +89,9 @@
 }
 
 .button{
-    border-radius: 5px;
+    border-radius: 20px;
     height: 100%;
-    width: 90px;
+    width: 30%;
     padding: 0;
 }
 
