@@ -15,4 +15,16 @@ header a {
     font-weight: 500;
     line-height: normal;
     margin: 0 0 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#checklist-header-icon{
+    width: auto;
+    height: 90%;
+}
+
+.checklist-icon-hover{
+    stroke: aquamarine;
 }
