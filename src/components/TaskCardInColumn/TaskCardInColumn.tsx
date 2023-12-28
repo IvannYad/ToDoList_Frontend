@@ -3,7 +3,7 @@ import TaskType from "../ui/TaskTypeBadge/TaskTypeBadge";
 import { useEffect, useState } from "react";
 import { Task } from "../../models/Task";
 import convertToReadableDate from "../../helperFunctions/convertToReadableDate";
-import TaskCard from "../TaskCard/TaskCard";
+import TaskCardModal from "../modals/TaskCardModal/TaskCardModal";
 
 
 
@@ -35,21 +35,11 @@ export default function TaskCardInColumn(props: TaskCardPropsInColumn){
     // Frunction-handler click on task card in column, opens task card wuth full information
     // and sets blurry background.
     function clickHandler(): void{
-        const curtainsElement = document.getElementById("curtains") as HTMLElement;
-        curtainsElement.classList.add("blurry-rectangle");
-        
-        const rootElement = document.getElementsByTagName("body")[0] as HTMLElement;
-        rootElement.classList.add("disable-scrolling");
         setIsOpen(true);
     }
 
     // Function-handler of 'Cancel' click on task card with full information.
     function resetClick(): void{
-        const curtainsElement = document.getElementById("curtains") as HTMLElement;
-        curtainsElement.classList.remove("blurry-rectangle");
-
-        const rootElement = document.getElementsByTagName("body")[0] as HTMLElement;
-        rootElement.classList.remove("disable-scrolling");
         setIsOpen(false);
     }
 
@@ -86,7 +76,7 @@ export default function TaskCardInColumn(props: TaskCardPropsInColumn){
                     </div>
                 </div>
             </button>
-            <TaskCard data={taskCardProps.data} hostElement={taskCardProps.hostElement} isOpen={isOpen} resetHandler={taskCardProps.resetHandler}/>
+            <TaskCardModal data={taskCardProps.data} hostElement={taskCardProps.hostElement} isOpen={isOpen} resetHandler={taskCardProps.resetHandler}/>
         </div>
     )
 }

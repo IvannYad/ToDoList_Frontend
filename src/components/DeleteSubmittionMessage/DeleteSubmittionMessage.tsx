@@ -3,7 +3,8 @@ import "./DeleteSubmittionMessage.css"
 import { useContext } from "react";
 import { TaskAPIServiceContext } from "../App/App";
 import { OnTasksChangeHandlersContext } from "../Main/Main";
-import Button from "../ui/Button/Button";
+import { Button } from "antd";
+
 
 type DeleteSubmittionMessageProps = {
     hostElement: HTMLElement;
@@ -17,7 +18,7 @@ export default function DeleteSubmittionMessage(props: DeleteSubmittionMessagePr
     const apiService = useContext(TaskAPIServiceContext);
 
     // Handler of delete submission.
-    function onDeleteSubmitHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
+    function onDeleteSubmitHandler(event: React.MouseEvent<HTMLElement, MouseEvent>){
         event.preventDefault();
         apiService.remove(props.id, tasksChangeHandlers.onDeleteNotifyHandler);
         const curtainsElement = document.getElementById("curtains") as HTMLElement;
@@ -44,10 +45,12 @@ export default function DeleteSubmittionMessage(props: DeleteSubmittionMessagePr
                 </div>
                 <div id="delete-buttons-holder">
                     <div className="button-holder">
-                        <Button type="click" buttonClasses="confirm-delete-task-button button" onClickHandler={(event) => onDeleteSubmitHandler(event)}>Delete</Button>
+                        <Button 
+                            className="confirm-delete-task-button button" onClick={(event) => onDeleteSubmitHandler(event)}
+                        >Delete</Button>
                     </div>
                     <div className="button-holder">
-                        <Button type="click" buttonClasses="cancel-delete-task-button button" onClickHandler={(event) => props.closeHandler(event)}>Cancel</Button>
+                        {/* <Button type="click" buttonClasses="cancel-delete-task-button button" onClickHandler={(event) => props.closeHandler(event)}>Cancel</Button> */}
                     </div>
                     </div>
             </div>

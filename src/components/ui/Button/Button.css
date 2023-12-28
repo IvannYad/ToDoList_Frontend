@@ -137,27 +137,8 @@
     font-weight: 900;
 }
 
-.confirm-delete-task-button{
-    width: 90%;
-    height: 45%;
-    border-radius: 20px;
-    border: 2px solid #FF3838;
-    background-color: rgba(255, 255, 255, 0);
-    color: #FF3838;
-}
-
 .confirm-delete-task-button:hover{
     background: rgba(255, 47, 47, 0.26);
 }
 
-.cancel-delete-task-button{
-    width: 90%;
-    height: 45%;
-    border: 2px solid #ffffff;
-    background-color: rgba(255, 255, 255, 0);
-    color: #ffffff;
-}
 
-.cancel-delete-task-button:hover{
-    background: rgba(255, 255, 255, 0.24);
-}
