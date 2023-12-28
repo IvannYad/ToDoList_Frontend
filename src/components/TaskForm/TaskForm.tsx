@@ -6,6 +6,8 @@ import TaskValidator from "../../services/TaskValidator";
 import { Converter } from "../../services/Converter";
 import { OnTasksChangeHandlersContext } from "../Main/Main";
 import { TaskAPIServiceContext } from "../App/App";
+import Button from "../ui/Button/Button";
+import CardHeader from "../ui/CardHeader/CardHeader";
 
 type TaskFormProps = {
     hostElement: HTMLElement;
@@ -18,6 +20,8 @@ type TaskFormProps = {
 export default function CreateTaskForm(props: TaskFormProps){
     const [task, setTask] = useState<Task>(props.prevTaskData);
     const [formValidator, setFormValidator] = useState(new TaskValidator());
+
+    // useRef return actual value only when input, to which useRef refers, changes  
     const titleInput = useRef<HTMLInputElement>(null);
     const startTimeInput = useRef<HTMLInputElement>(null);
     const endTimeInput = useRef<HTMLInputElement>(null);
@@ -35,10 +39,10 @@ export default function CreateTaskForm(props: TaskFormProps){
         })
     }, []);
 
-
+    // Function for input validation.
     function isTitleValid(): boolean{
         if (!titleInput.current!.value) return true;
-        return titleInput.current!.value.length >= 5;
+        return titleInput.current!.value.length >= 5 && titleInput.current!.value.length <= 35;
     }
 
     function isTimeValid(): boolean{
@@ -56,13 +60,15 @@ export default function CreateTaskForm(props: TaskFormProps){
         return descriptionInput.current!.value.length <= 150;
     }
     
+    // If form wasn`t invoken, return null. 
     if(!props.isOpen) return null;
 
+    // Handlers for input change.
     function onTitleChangeHandler(event: ChangeEvent<HTMLInputElement>){
         event.preventDefault();
         titleInput.current!.value = event.target.value;
         if(!isTitleValid()){
-            document.getElementById("title-input-error")!.innerHTML = "Title minimum length is 5";
+            document.getElementById("title-input-error")!.innerHTML = "Title length must be between 5 and 35";
             return;
         }
         
@@ -104,20 +110,30 @@ export default function CreateTaskForm(props: TaskFormProps){
         setTask({ ...task, type: Converter.stringToTaskType(typeInput.current!.value)});
     }
 
+    function onCancelHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
+        event.preventDefault();
+        props.closeHandler();
+    }
+
+    // Handler for form submitting.
     function onFormSubmitHandler(event: FormEvent<HTMLFormElement>){
+        // Always call .preventDefault() to aviod unexpected things.
         event.preventDefault();
         if (!formValidator.validate()){
+            // If data in form input field is not valid.
             return;
         }
+
         if(props.type === "create"){
             // Creating task.
             const taskCreate: TaskCreate = {
                 ...task
-            }
+            };
             apiService.create(taskCreate, tasksChangeHandlers.onCreateNotifyHandler);
+            
+            // If task created, remove form and blurry background.
             const curtainsElement = document.getElementById("curtains") as HTMLElement;
             curtainsElement.classList.remove("blurry-rectangle");
-
             const rootElement = document.getElementsByTagName("body")[0] as HTMLElement;
             rootElement.classList.remove("disable-scrolling");
         }
@@ -126,22 +142,17 @@ export default function CreateTaskForm(props: TaskFormProps){
             const updateTask: Task = {
                 ...task,
                 id: +(document.getElementById("task-id-input") as HTMLInputElement).value
-            }
-            console.log(updateTask);
+            };
             apiService.update(updateTask.id, updateTask, tasksChangeHandlers.onUpdateNotifyHandler);
         }
         
-        
+        // When form submitting logic is processed, notify component that holds tasks array about update.
         props.closeHandler();
     }
 
-    console.log(props.prevTaskData);
-
     return ReactDOM.createPortal(
         <div id="task-create-card-holder">
-            <div id="task-create-card-header">
-                {props.type === "create" ? "Create Task" : "Update Task"}
-            </div>
+            <CardHeader headerClasses={`${props.type}-header header`}>{props.type === "create" ? "Create Task" : "Update task"}</CardHeader>
             <div id="task-create-form-holder">
                 <form id="create-task-form" onSubmit={(event) => onFormSubmitHandler(event)}>
                     <input id="task-id-input" type="number" value={props.prevTaskData.id} hidden/>
@@ -185,10 +196,10 @@ export default function CreateTaskForm(props: TaskFormProps){
                     </div>
                     <div id="task-create-form-buttons-row">
                         <div className="button-holder">
-                            <button type="submit" className="create-task-button">{props.type === "create" ? "Create Task" : "Update Task"}</button>
+                            <Button type="submit" buttonClasses={`${props.type}-task-form-button button`}>{props.type === "create" ? "Create Task" : "Update Task"}</Button>
                         </div>
                         <div className="button-holder">
-                            <button type="submit" className="cancel-creating-task-button" onClick={() => props.closeHandler()}>Cancel</button>
+                            <Button type="click" buttonClasses="cancel-button-form button" onClickHandler={(event) => onCancelHandler(event)}>Cancel</Button>
                         </div>
                     </div>
                 </form>

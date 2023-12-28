@@ -1,11 +1,12 @@
 import ReactDOM from "react-dom";
 import convertToReadableDate from "../../helperFunctions/convertToReadableDate";
 import { Task } from "../../models/Task";
-import TaskType from "../TaskTypeBadge/TaskTypeBadge";
+import TaskType from "../ui/TaskTypeBadge/TaskTypeBadge";
 import "./TaskCard.css"
 import TaskForm from "../TaskForm/TaskForm";
 import { useState } from "react";
 import DeleteSubmittionMessage from "../DeleteSubmittionMessage/DeleteSubmittionMessage";
+import Button from "../ui/Button/Button";
 
 
 type TaskCardProps = {
@@ -20,7 +21,9 @@ export default function TaskCard(props: TaskCardProps){
     const [isUpdateFormOpen, setIsUpdateFromOpen] = useState(false);
     const [isDeleteFormOpen, setIsDeleteFromOpen] = useState(false);
 
-    function openUpdateFormHandler(): void{
+    // Function for handling opening and closing from for updating and delete submission message.
+    function openUpdateFormHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void{
+        event.preventDefault();
         (document.getElementById("task-card") as HTMLElement).style.display = "none";
         setIsUpdateFromOpen(true);
     }
@@ -30,22 +33,27 @@ export default function TaskCard(props: TaskCardProps){
         setIsUpdateFromOpen(false);
     }
 
-    function openDeleteFormHandler(): void{
+    function openDeleteFormHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void{
+        event.preventDefault();
         (document.getElementById("task-card") as HTMLElement).style.display = "none";
         setIsDeleteFromOpen(true);
     }
 
-    function closeDeleteFormHandler(): void{
+    function closeDeleteFormHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void{
+        event.preventDefault();
         (document.getElementById("task-card") as HTMLElement).style.display = "block";
         setIsDeleteFromOpen(false);
     }
 
+    // If task card with full information isn`r invoked return null.
     if(!props.isOpen) return null;
+
     const task: Task = props.data;
+
     return ReactDOM.createPortal(
         <div id="task-card" draggable="true">
             <div id="status-holder">
-                <div id="status">{task.status}</div>
+                <div id={`status-${props.data.status}`} className="task-card-status">{task.status}</div>
             </div>
             <div id="card-header">
                 <div id="row-holder">
@@ -64,11 +72,11 @@ export default function TaskCard(props: TaskCardProps){
                 </div>
             </div>
             <div id="card-buttons-display">
-                <div id="row-holder" className="card-description-text">
+                <div id="row-holder">
                     <div>
-                        <button className="button updateButton" onClick={() => openUpdateFormHandler()}>Update</button>
-                        <button className="button deleteButton" onClick={() => openDeleteFormHandler()}>Delete</button>
-                        <button className="button backToListButton" onClick={() => props.resetHandler()}>Back to list</button>
+                        <Button type="click" buttonClasses="button update-button-card" onClickHandler={(event) => openUpdateFormHandler(event)}>Update</Button>
+                        <button className="button delete-button-card" onClick={(event) => openDeleteFormHandler(event)}>Delete</button>
+                        <button className="button cancel-button-card" onClick={() => props.resetHandler()}>Back to list</button>
                     </div>
                 </div>
             </div>
@@ -76,5 +84,4 @@ export default function TaskCard(props: TaskCardProps){
             <DeleteSubmittionMessage id={props.data.id} hostElement={hostElement} isOpen={isDeleteFormOpen} closeHandler={closeDeleteFormHandler}/>
         </div>
     , props.hostElement)
-    
 }

@@ -13,7 +13,7 @@ type TasksChangeHandlers = {
     onSearchNotificationHandler: () => void
 }
 
-
+// Context with handlers on changes of tasks list.
 export const OnTasksChangeHandlersContext = React.createContext<TasksChangeHandlers>({
     onCreateNotifyHandler: () => {},
     onDeleteNotifyHandler: () => {},
@@ -29,12 +29,13 @@ export type DropHandlerProps = {
 }
 
 export default function Main(){
-    console.log("func start");
     const taskAPIService = useContext(TaskAPIServiceContext);
     const [tasksFilter, setTasksFilter] = useState<string>("");
     const [tasks, setTasks] = useState<Task[]>([]);
     const [isChanged, setIsChanged] = useState(false);
+    
     useEffect(() => {
+        // Executes only when isChanged variable changes.
         console.log(tasksFilter);
         taskAPIService.getAll(filterFunction())
             .then(response => {
@@ -42,11 +43,11 @@ export default function Main(){
                     setTasks(response);
                 }
             })
-            setTimeout(() => {}, 10);
-            console.log("useEffect end");
-            setIsChanged(false);
+        // Reseting isChange variable   
+        setIsChanged(false);
     }, [isChanged])
     
+    // Implementation of handlers of tasks array change.
     function searchNotificationHandler(){
         setIsChanged(true);
     }
@@ -63,25 +64,28 @@ export default function Main(){
         setIsChanged(true);
     }
     
+    // Function, that returns arrow function or null for tasks filtering.
     function filterFunction(): ((task: Task) => boolean) | null{
         if(!tasksFilter || tasksFilter.trim().length === 0){
+            // If search input in empty or not provided, assume we don`t have filter.  
             return null;
         }
 
+        // Returning filter function.
         return (task: Task) => {
             return task.taskTitle.toLowerCase().includes(tasksFilter)
             || task.status.toLowerCase().includes(tasksFilter)
             || task.type.toLowerCase().includes(tasksFilter);
-        
         }
     }
 
+    // Creating variable that will store handlers on tasks array change,
     const tasksChangeHandlers: TasksChangeHandlers = {
         onCreateNotifyHandler: createNotificationHandler,
         onDeleteNotifyHandler: deleteNotificationHandler,
         onUpdateNotifyHandler: updateNotificationHandler,
         onSearchNotificationHandler: searchNotificationHandler
-    }
+    };
     return (
         <OnTasksChangeHandlersContext.Provider value={tasksChangeHandlers}>
         <main>

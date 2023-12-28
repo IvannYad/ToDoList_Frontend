@@ -11,22 +11,7 @@
     background: #100F0F;
     z-index: 20;
 }
-#task-create-card-header{
-    width: 100%;
-    height: 10%;
-    border-radius: 20px 20px 0px 0px;
-    border-bottom: 2px solid #FFF;
-    background: rgba(217, 217, 217, 0.31);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #FFF;
-    font-family: Inter;
-    font-size: 28px;
-    font-style: italic;
-    font-weight: 500;
-    line-height: normal;
-}
+
 
 #task-create-form-holder{
     margin-top: 20px;
@@ -109,39 +94,6 @@
     justify-content: center;
     align-items: center;
 }
-
-#task-create-form-buttons-row .button-holder button{
-    width: 90%;
-    height: 50%;
-    border-radius: 20px;
-    font-family: Inter;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    margin-left: -9%;
-}
-  
-#task-create-form-buttons-row .button-holder .create-task-button{
-    color: #38FF58;
-    border: 2px solid #38FF58;
-    background: rgba(255, 255, 255, 0);
-}
-
-#task-create-form-buttons-row .button-holder .create-task-button:hover{
-    background: rgba(59, 255, 42, 0.30);
-}
-
-#task-create-form-buttons-row .button-holder .cancel-creating-task-button{
-    color: #ffffff;
-    border: 2px solid #ffffff;
-    background: rgba(255, 255, 255, 0);
-}
-
-#task-create-form-buttons-row .button-holder .cancel-creating-task-button:hover{
-    background: rgba(234, 240, 233, 0.336);
-}
-
 
 .task-create-from-input{
     margin-top: 1px;

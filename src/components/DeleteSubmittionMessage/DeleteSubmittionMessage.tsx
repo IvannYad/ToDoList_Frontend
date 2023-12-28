@@ -3,11 +3,12 @@ import "./DeleteSubmittionMessage.css"
 import { useContext } from "react";
 import { TaskAPIServiceContext } from "../App/App";
 import { OnTasksChangeHandlersContext } from "../Main/Main";
+import Button from "../ui/Button/Button";
 
 type DeleteSubmittionMessageProps = {
     hostElement: HTMLElement;
     isOpen: boolean;
-    closeHandler: () => void;
+    closeHandler: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     id: number;
 }
 
@@ -15,7 +16,9 @@ export default function DeleteSubmittionMessage(props: DeleteSubmittionMessagePr
     const tasksChangeHandlers = useContext(OnTasksChangeHandlersContext);
     const apiService = useContext(TaskAPIServiceContext);
 
-    function onDeleteSubmitHandler(){
+    // Handler of delete submission.
+    function onDeleteSubmitHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
+        event.preventDefault();
         apiService.remove(props.id, tasksChangeHandlers.onDeleteNotifyHandler);
         const curtainsElement = document.getElementById("curtains") as HTMLElement;
         curtainsElement.classList.remove("blurry-rectangle");
@@ -24,6 +27,7 @@ export default function DeleteSubmittionMessage(props: DeleteSubmittionMessagePr
         rootElement.classList.remove("disable-scrolling");
     }
 
+    // If delete submission message is not invoked, return null.
     if(!props.isOpen) return null;
     return ReactDOM.createPortal(
         <div id="deleteSubmissionMessage">
@@ -40,10 +44,10 @@ export default function DeleteSubmittionMessage(props: DeleteSubmittionMessagePr
                 </div>
                 <div id="delete-buttons-holder">
                     <div className="button-holder">
-                        <button id="confirm-delete-task" onClick={() => onDeleteSubmitHandler()}>Delete</button>
+                        <Button type="click" buttonClasses="confirm-delete-task-button button" onClickHandler={(event) => onDeleteSubmitHandler(event)}>Delete</Button>
                     </div>
                     <div className="button-holder">
-                        <button id="cancel-delete-task" onClick={() => props.closeHandler()}>Cancel</button>
+                        <Button type="click" buttonClasses="cancel-delete-task-button button" onClickHandler={(event) => props.closeHandler(event)}>Cancel</Button>
                     </div>
                     </div>
             </div>
