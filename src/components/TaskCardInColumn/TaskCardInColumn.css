@@ -75,7 +75,7 @@
 
 #task-card-in-column-holder #title-holder{
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 }
 
@@ -95,5 +95,20 @@
     font-style: italic;
     font-weight: 500;
     line-height: normal;
+    display: -webkit-box;
+   -webkit-line-clamp: 3;
+   -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: "..." !important;
 }
+
+.text-overflow-hidden{
+    width: calc(100%);
+    display: block;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
 

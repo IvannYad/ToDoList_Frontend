@@ -71,7 +71,7 @@ export default function TaskCardInColumn(props: TaskCardPropsInColumn){
             <button id={`task-card-${props.data.id}`} className="task-card-in-column" draggable="true" onClick={clickHandler}>
                 <div id="card-header">
                     <div id="row-holder">
-                        <div id="title-holder" className="card-title-text">{props.data.taskTitle}</div>
+                        <div id="title-holder" className="card-title-text text-overflow-hidden">{props.data.taskTitle}</div>
                         <div id="title-holder"><TaskType type={props.data.type}/></div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@ export default function TaskCardInColumn(props: TaskCardPropsInColumn){
                     </div>
                 </div>
                 <div id="card-description-display">
-                    <div id="row-holder" className="card-description-text">
+                    <div id="row-holder" className="card-description-text text-overflow-hidden">
                         {props.data.additionalDescription}
                     </div>
                 </div>

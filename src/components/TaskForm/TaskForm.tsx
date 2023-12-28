@@ -40,7 +40,7 @@ export default function CreateTaskForm(props: TaskFormProps){
     // Function for input validation.
     function isTitleValid(): boolean{
         if (!titleInput.current!.value) return true;
-        return titleInput.current!.value.length >= 5;
+        return titleInput.current!.value.length >= 5 && titleInput.current!.value.length <= 35;
     }
 
     function isTimeValid(): boolean{
@@ -66,7 +66,7 @@ export default function CreateTaskForm(props: TaskFormProps){
         event.preventDefault();
         titleInput.current!.value = event.target.value;
         if(!isTitleValid()){
-            document.getElementById("title-input-error")!.innerHTML = "Title minimum length is 5";
+            document.getElementById("title-input-error")!.innerHTML = "Title minimum length is between 5 and 35";
             return;
         }
         
