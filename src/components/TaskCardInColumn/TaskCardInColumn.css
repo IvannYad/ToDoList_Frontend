@@ -66,6 +66,7 @@
     font-weight: 500;
     line-height: normal;
     text-decoration-line: underline;
+    margin-right: 5%;
 }
 
 #task-card-in-column-holder #card-time-display{
