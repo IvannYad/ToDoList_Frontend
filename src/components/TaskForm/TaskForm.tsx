@@ -6,6 +6,7 @@ import TaskValidator from "../../services/TaskValidator";
 import { Converter } from "../../services/Converter";
 import { OnTasksChangeHandlersContext } from "../Main/Main";
 import { TaskAPIServiceContext } from "../App/App";
+import Button from "../ui/Button/Button";
 
 type TaskFormProps = {
     hostElement: HTMLElement;
@@ -108,6 +109,11 @@ export default function CreateTaskForm(props: TaskFormProps){
         setTask({ ...task, type: Converter.stringToTaskType(typeInput.current!.value)});
     }
 
+    function onCancelHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
+        event.preventDefault();
+        props.closeHandler();
+    }
+
     // Handler for form submitting.
     function onFormSubmitHandler(event: FormEvent<HTMLFormElement>){
         // Always call .preventDefault() to aviod unexpected things.
@@ -191,10 +197,10 @@ export default function CreateTaskForm(props: TaskFormProps){
                     </div>
                     <div id="task-create-form-buttons-row">
                         <div className="button-holder">
-                            <button type="submit" className="create-task-button">{props.type === "create" ? "Create Task" : "Update Task"}</button>
+                            <Button type="submit" buttonClasses={`${props.type}-task-form-button button`}>{props.type === "create" ? "Create Task" : "Update Task"}</Button>
                         </div>
                         <div className="button-holder">
-                            <button type="submit" className="cancel-creating-task-button" onClick={() => props.closeHandler()}>Cancel</button>
+                            <Button type="click" buttonClasses="cancel-button-form button" onClickHandler={(event) => onCancelHandler(event)}>Cancel</Button>
                         </div>
                     </div>
                 </form>

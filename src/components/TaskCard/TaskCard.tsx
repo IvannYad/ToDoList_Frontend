@@ -6,6 +6,7 @@ import "./TaskCard.css"
 import TaskForm from "../TaskForm/TaskForm";
 import { useState } from "react";
 import DeleteSubmittionMessage from "../DeleteSubmittionMessage/DeleteSubmittionMessage";
+import Button from "../ui/Button/Button";
 
 
 type TaskCardProps = {
@@ -21,7 +22,8 @@ export default function TaskCard(props: TaskCardProps){
     const [isDeleteFormOpen, setIsDeleteFromOpen] = useState(false);
 
     // Function for handling opening and closing from for updating and delete submission message.
-    function openUpdateFormHandler(): void{
+    function openUpdateFormHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void{
+        event.preventDefault();
         (document.getElementById("task-card") as HTMLElement).style.display = "none";
         setIsUpdateFromOpen(true);
     }
@@ -31,12 +33,14 @@ export default function TaskCard(props: TaskCardProps){
         setIsUpdateFromOpen(false);
     }
 
-    function openDeleteFormHandler(): void{
+    function openDeleteFormHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void{
+        event.preventDefault();
         (document.getElementById("task-card") as HTMLElement).style.display = "none";
         setIsDeleteFromOpen(true);
     }
 
-    function closeDeleteFormHandler(): void{
+    function closeDeleteFormHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void{
+        event.preventDefault();
         (document.getElementById("task-card") as HTMLElement).style.display = "block";
         setIsDeleteFromOpen(false);
     }
@@ -70,9 +74,9 @@ export default function TaskCard(props: TaskCardProps){
             <div id="card-buttons-display">
                 <div id="row-holder">
                     <div>
-                        <button className="button updateButton" onClick={() => openUpdateFormHandler()}>Update</button>
-                        <button className="button deleteButton" onClick={() => openDeleteFormHandler()}>Delete</button>
-                        <button className="button backToListButton" onClick={() => props.resetHandler()}>Back to list</button>
+                        <Button type="click" buttonClasses="button update-button-card" onClickHandler={(event) => openUpdateFormHandler(event)}>Update</Button>
+                        <button className="button delete-button-card" onClick={(event) => openDeleteFormHandler(event)}>Delete</button>
+                        <button className="button cancel-button-card" onClick={() => props.resetHandler()}>Back to list</button>
                     </div>
                 </div>
             </div>
