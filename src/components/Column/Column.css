@@ -8,30 +8,7 @@
     min-height: 50vh;
     display: block;
 }
-.column div, .column button{
-    display: block;
-}
 
-.column .column-header{
-    margin-left: -1.5px;
-    width: 100%;
-    height: 64px;
-    flex-shrink: 0;
-    border-radius: 20px 20px 0px 0px;
-    margin-top: 0px;
-    font-family: Inter;
-    font-size: 1.4rem;
-    font-weight: 700;
-    line-height: normal;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.content-holder{
-    display: inline;
-}
 @layer higher {
     #to-do-column{
         border: solid 1px #38FF40;
@@ -44,34 +21,8 @@
     #done-column{
         border: solid 1px #bd67ff;
     }
+}
 
-    #to-do-column .column-header{
-        border-radius: 20px 20px 0px 0px;
-        border-top: 1px solid #38FF40;
-        border-right: 1px solid #38FF40;
-        border-left: 1px solid #38FF40;
-        color: #38FF40;
-        background: rgba(61, 252, 44, 0.274);
-    }
-    
-    #in-progress-column .column-header{
-        border-top: 1px solid #FFD233;
-        border-right: 1px solid #FFD233;
-        border-left: 1px solid #FFD233;
-        color: #FFD233;
-        background: rgba(255, 207, 84, 0.322);
-    }
-    
-    #done-column .column-header{
-        border-top: 1px solid #bd67ff;
-        border-right: 1px solid #bd67ff;
-        border-left: 1px solid #bd67ff;
-        color: #bd67ff;
-        background: rgba(165, 49, 253, 0.322);
-    }
-    
-    
-  }
 .drag-over{
     border-radius: 25px;
     border: 3px solid #5763ff;

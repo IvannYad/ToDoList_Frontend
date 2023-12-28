@@ -7,6 +7,7 @@ import { Converter } from "../../services/Converter";
 import { OnTasksChangeHandlersContext } from "../Main/Main";
 import { TaskAPIServiceContext } from "../App/App";
 import Button from "../ui/Button/Button";
+import CardHeader from "../ui/CardHeader/CardHeader";
 
 type TaskFormProps = {
     hostElement: HTMLElement;
@@ -67,7 +68,7 @@ export default function CreateTaskForm(props: TaskFormProps){
         event.preventDefault();
         titleInput.current!.value = event.target.value;
         if(!isTitleValid()){
-            document.getElementById("title-input-error")!.innerHTML = "Title minimum length is between 5 and 35";
+            document.getElementById("title-input-error")!.innerHTML = "Title length must be between 5 and 35";
             return;
         }
         
@@ -151,9 +152,7 @@ export default function CreateTaskForm(props: TaskFormProps){
 
     return ReactDOM.createPortal(
         <div id="task-create-card-holder">
-            <div id="task-create-card-header">
-                {props.type === "create" ? "Create Task" : "Update Task"}
-            </div>
+            <CardHeader headerClasses={`${props.type}-header header`}>{props.type === "create" ? "Create Task" : "Update task"}</CardHeader>
             <div id="task-create-form-holder">
                 <form id="create-task-form" onSubmit={(event) => onFormSubmitHandler(event)}>
                     <input id="task-id-input" type="number" value={props.prevTaskData.id} hidden/>

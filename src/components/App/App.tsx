@@ -1,5 +1,5 @@
 import './App.css'
-import Header from '../Header/Header'
+import MainHeader from '../MainHeader/MainHeader'
 import Footer from '../Footer/Footer'
 import Main from '../Main/Main'
 import ITaskAPIService from '../../api/ITaskAPIService'
@@ -14,7 +14,7 @@ function App() {
   return (
     <TaskAPIServiceContext.Provider value={taskAPIService}>
       <div>
-        <Header />
+        <MainHeader />
         <Main />
         <Footer />
         <div id="curtains"></div>

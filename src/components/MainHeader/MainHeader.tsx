@@ -1,6 +1,6 @@
-import "./Header.css"
+import "./MainHeader.css"
 
-export default function Header(){
+export default function MainHeader(){
     function onMouseOverHandler(){
         (document.getElementById("header-checklist-icon") as HTMLImageElement).src = "../../../public/checklist-hover.svg";
     }

@@ -5,6 +5,7 @@ import "./Column.css"
 import { Task } from "../../models/Task";
 import { TaskAPIServiceContext } from "../App/App";
 import { OnTasksChangeHandlersContext } from "../Main/Main";
+import CardHeader from "../ui/CardHeader/CardHeader";
 
 type ColumnProps = {
     id: "to-do-column" | "in-progress-column" | "done-column";
@@ -77,9 +78,7 @@ export default function Column({id, title, tasks}: ColumnProps){
     
     return (
         <div id={id} className="column">
-            <div className="column-header">
-                {title}
-            </div>
+            <CardHeader headerClasses={`${id}-header header column-header`}>{title}</CardHeader>
             <div>
                 <TaskList columnId={id} tasks={tasks}/>
                 { id === "to-do-column" ? <AddTaskButton /> : ""}
