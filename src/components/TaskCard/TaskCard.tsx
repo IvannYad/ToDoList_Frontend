@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import convertToReadableDate from "../../helperFunctions/convertToReadableDate";
 import { Task } from "../../models/Task";
-import TaskType from "../TaskTypeBadge/TaskTypeBadge";
+import TaskType from "../ui/TaskTypeBadge/TaskTypeBadge";
 import "./TaskCard.css"
 import TaskForm from "../TaskForm/TaskForm";
 import { useState } from "react";
