@@ -76,7 +76,7 @@ export default function TaskCardInColumn(props: TaskCardPropsInColumn){
                     </div>
                 </div>
             </button>
-            <TaskCardModal data={taskCardProps.data} hostElement={taskCardProps.hostElement} isOpen={isOpen} resetHandler={taskCardProps.resetHandler}/>
+            <TaskCardModal data={taskCardProps.data} isOpen={isOpen} resetHandler={taskCardProps.resetHandler}/>
         </div>
     )
 }

@@ -2,34 +2,31 @@ import convertToReadableDate from "../../../helperFunctions/convertToReadableDat
 import { Task } from "../../../models/Task";
 import TaskType from "../../ui/TaskTypeBadge/TaskTypeBadge";
 import "./TaskCardModal.css"
-import TaskForm from "../../TaskForm/TaskForm";
 import { useState } from "react";
-import Button from "../../ui/Button/Button";
 import ConfirmDeletingModal from "../ConfirmDeletingModal/ConfirmDeletingModal";
-import { Modal } from "antd";
+import { Button, Modal } from "antd";
 
 
 type TaskCardProps = {
     data: Task;
-    hostElement: HTMLElement;
     isOpen: boolean;
     resetHandler: () => void;
 }
 
 export default function TaskCardModal(props: TaskCardProps){
-    const hostElement = document.getElementById("additional-elements-holder") as HTMLElement;
-    const [isUpdateFormOpen, setIsUpdateFromOpen] = useState(false);
+    // const [isUpdateFormOpen, setIsUpdateFromOpen] = useState(false);
     const [isDeleteFormOpen, setIsDeleteFromOpen] = useState(false);
 
     // Function for handling opening and closing from for updating and delete submission message.
-    function openUpdateFormHandler(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void{
+    function openUpdateFormHandler(event: React.MouseEvent<HTMLElement, MouseEvent>): void{
         event.preventDefault();
-        setIsUpdateFromOpen(true);
+        //setIsUpdateFromOpen(true);
     }
 
-    function closeUpdateFormHandler(): void{
-        setIsUpdateFromOpen(false);
-    }
+    // function closeUpdateFormHandler(event: React.MouseEvent<HTMLElement, MouseEvent>): void{
+    //     event.preventDefault();
+    //     setIsUpdateFromOpen(false);
+    // }
 
     function openDeleteFormHandler(event: React.MouseEvent<HTMLElement, MouseEvent>): void{
         event.preventDefault();
@@ -49,39 +46,52 @@ export default function TaskCardModal(props: TaskCardProps){
     return (
         <Modal 
             open={props.isOpen}
+            centered={true}
+            closable={false}
+            className="task-card-modal"
+            footer={
+                [
+                    <div className="row-holder">
+                        <Button
+                        onClick={(event) => openUpdateFormHandler(event)}
+                        className="update-button-card button"
+                    >Update</Button>
+                    <Button
+                        onClick={(event) => openDeleteFormHandler(event)}
+                        className="delete-button-card button"
+                    >Delete</Button>
+                    <Button
+                        onClick={(event) => {
+                            event.preventDefault();
+                            props.resetHandler()
+                        }}
+                        className="cancel-button-card button"
+                    >Cancel</Button>
+                    </div>,
+                    
+                ]
+            }
             >
-            <div id="task-card" draggable="true">
-                <div id="status-holder">
-                    <div id={`status-${props.data.status}`} className="task-card-status">{task.status}</div>
+                <div className="status-holder">
+                    <div className={`status-${props.data.status} task-card-status`}>{task.status}</div>
                 </div>
-                <div id="card-header">
-                    <div id="row-holder">
+                <div className="card-header">
+                    <div className="row-holder">
                         <div id="title-holder" className="card-title-text">{task.taskTitle}</div>
                         <div id="title-holder"><TaskType type={task.type}/></div>
                     </div>
                 </div>
-                <div id="card-time-display">
-                    <div id="row-holder" className="card-time-text">
+                <div className="card-time-display">
+                    <div className="row-holder card-time-text">
                         {convertToReadableDate(task.taskStartTime)} - {convertToReadableDate(task.taskEndTime)}
                     </div>
                 </div>
-                <div id="card-description-display">
-                    <div id="row-holder" className="card-description-text">
+                <div className="card-description-display">
+                    <div className="row-holder card-description-text">
                         {task.additionalDescription}
                     </div>
                 </div>
-                <div id="card-buttons-display">
-                    <div id="row-holder">
-                        <div>
-                            <Button type="click" buttonClasses="button update-button-card" onClickHandler={(event) => openUpdateFormHandler(event)}>Update</Button>
-                            <button className="button delete-button-card" onClick={(event) => openDeleteFormHandler(event)}>Delete</button>
-                            <button className="button cancel-button-card" onClick={() => props.resetHandler()}>Back to list</button>
-                        </div>
-                    </div>
-                </div>
-                <TaskForm type="update" hostElement={hostElement} isOpen={isUpdateFormOpen} closeHandler={closeUpdateFormHandler} prevTaskData={props.data}/>
                 <ConfirmDeletingModal id={props.data.id} isOpen={isDeleteFormOpen} closeHandler={closeDeleteFormHandler}/>
-            </div>
         </Modal>
     )
 }
