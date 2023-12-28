@@ -49,7 +49,7 @@ export default function TaskCard(props: TaskCardProps){
     return ReactDOM.createPortal(
         <div id="task-card" draggable="true">
             <div id="status-holder">
-                <div id="status">{task.status}</div>
+                <div id={`status-${props.data.status}`} className="task-card-status">{task.status}</div>
             </div>
             <div id="card-header">
                 <div id="row-holder">

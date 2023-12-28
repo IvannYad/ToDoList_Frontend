@@ -42,7 +42,7 @@
     }
     
     #done-column{
-        border: solid 1px #b354fc;
+        border: solid 1px #bd67ff;
     }
 
     #to-do-column .column-header{
@@ -63,10 +63,10 @@
     }
     
     #done-column .column-header{
-        border-top: 1px solid #b354fc;
-        border-right: 1px solid #b354fc;
-        border-left: 1px solid #b354fc;
-        color: #b354fc;
+        border-top: 1px solid #bd67ff;
+        border-right: 1px solid #bd67ff;
+        border-left: 1px solid #bd67ff;
+        color: #bd67ff;
         background: rgba(165, 49, 253, 0.322);
     }
     
