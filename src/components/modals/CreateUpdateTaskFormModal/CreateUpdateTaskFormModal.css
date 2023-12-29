@@ -1,0 +1,259 @@
+.create-update-task-form-modal{
+    width: fit-content !important;
+}
+
+.create-update-task-form-modal .ant-modal-content{
+    width: 500px;
+    height: 550px;
+    border-radius: 20px;
+    border: 1px solid #DEDDDD;
+    background: #100F0F;
+    padding: 0px;
+}
+
+.create-update-task-form-modal .ant-modal-body{
+    width: 100%;
+    height: 85%;
+}
+
+.create-update-task-form-modal .ant-modal-body .task-create-update-form-holder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-update-task-form-modal .ant-modal-body .task-create-update-form-holder .ant-form{
+    margin-top: 20px;
+    width: 90%;
+}
+
+.create-update-task-form-modal .ant-modal-body .ant-form .task-create-form-input{
+    width: 100%;
+    margin-top: 1px;
+    border-radius: 10px;
+    border: 1px solid #A8A8A8;
+    background: #373333;
+    color: #A8A8A8;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+}
+
+.create-update-task-form-modal .ant-modal-body .ant-form .title-input-holder label{
+    color: #A8A8A8;
+    font-family: Inter;
+    font-size: medium;
+}
+
+.create-update-task-form-modal .ant-modal-body .ant-form .task-create-form-time-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.create-update-task-form-modal .ant-modal-body .ant-form .time-input-holder{
+    width: 45% !important;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.create-update-task-form-modal .ant-modal-body .ant-form .time-input-holder .ant-row{
+    width: 100% !important;
+    display: flex;
+    justify-content: start;
+}
+
+.create-update-task-form-modal .ant-modal-body .ant-form .time-input-holder label{
+    color: #A8A8A8;
+    font-family: Inter;
+    font-size: medium;
+}
+
+.create-update-task-form-modal .ant-modal-body .ant-form .time-input-holder .time-input input{
+    color: #A8A8A8;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+}
+
+.create-update-task-form-modal .ant-modal-body .ant-form .time-input-holder .time-input input::placeholder{
+    color: #A8A8A8;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+}
+
+
+
+
+
+.create-update-task-form-modal .ant-modal-footer{
+    margin-top: 0px;
+    width: 100%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-update-task-form-modal .ant-modal-footer .row-holder{
+    width: 85%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.create-update-task-form-modal .ant-modal-footer .button{
+    font-size: 18px !important;
+    border-radius: 20px;
+    padding: 0;
+    font-family: Inter;
+    font-size: medium;
+    width: 200px;
+    height: 35px;
+    margin: 0px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-update-task-form-modal .ant-modal-footer .create-task-button{
+    color: #38FF58;
+    border: 2px solid #38FF58;
+    background: rgba(255, 255, 255, 0);
+}
+
+.create-update-task-form-modal .ant-modal-footer .create-task-button:hover{
+    color: #38FF58;
+    border: 2px solid #38FF58;
+    background: rgba(59, 255, 42, 0.30);
+}
+
+.create-update-task-form-modal .ant-modal-footer .update-task-button{
+    border: 2px solid #09ecec;
+    background: #01163500;
+    color: #09ecec;
+}
+
+.create-update-task-form-modal .ant-modal-footer .update-task-button:hover{
+    border: 2px solid #09ecec;
+    color: #09ecec;
+    background: #62c6ee52;
+}
+
+.create-update-task-form-modal .ant-modal-footer .cancel-button{
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    background: rgba(255, 255, 255, 0);
+}
+
+.create-update-task-form-modal .ant-modal-footer .cancel-button:hover{
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    background: rgba(234, 240, 233, 0.336);
+}
+
+
+
+
+#task-create-form-title-row{
+    height: 17%;
+    width: 100%;
+    color: #A8A8A8;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#task-create-form-time-row{
+    height: 17%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #A8A8A8;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#task-create-form-description-row{
+    height: 33%;
+    width: 100%;
+    color: #A8A8A8;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#task-create-form-type-row{
+    height: 17%;
+    width: 100%;
+    color: #A8A8A8;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+#task-create-form-buttons-row{
+    height: 15%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-holder{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.title-input{
+    width: 95%;
+    height: 30px;
+}
+
+.description-input{
+    width: 95%;
+    height: 100px;
+    resize: none;
+}
+
+.time-input{
+    width: 90%;
+    height: 30px;
+}
+
+.type-input{
+    width: 95%;
+    height: 30px;
+}
+
+.task-input-error{
+    color: rgba(255, 48, 48, 0.829);
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}

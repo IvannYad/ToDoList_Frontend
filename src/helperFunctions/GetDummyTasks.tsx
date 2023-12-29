@@ -57,8 +57,8 @@ export function getDefaultTask(): Task
         id: 0,
         taskTitle: "",
         additionalDescription: "",
-        taskStartTime: "",
-        taskEndTime: "",
+        taskStartTime: "2023-02-18T14:54:28.555Z",
+        taskEndTime: "2023-02-18T14:54:28.555Z",
         status: "to-do",
         type: "feature",
     }

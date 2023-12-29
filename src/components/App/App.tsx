@@ -2,9 +2,11 @@ import './App.css'
 import ITaskAPIService from '../../api/ITaskAPIService'
 import TaskAPIService from '../../api/TaskAPIService'
 import React from 'react'
-import MainHeader from '../MainHeader/MainHeader';
-import Main from '../Main/Main';
-import Footer from '../Footer/Footer';
+// import MainHeader from '../MainHeader/MainHeader';
+// import Main from '../Main/Main';
+// import Footer from '../Footer/Footer';
+import { getDefaultTask } from '../../helperFunctions/GetDummyTasks';
+import CreateUpdateTaskFormModal from '../modals/CreateUpdateTaskFormModal/CreateUpdateTaskFormModal';
 
 
 export const TaskAPIServiceContext = React.createContext<ITaskAPIService>(new TaskAPIService(""));
@@ -14,11 +16,12 @@ function App() {
   
   return (
     <TaskAPIServiceContext.Provider value={taskAPIService}>
-      <div>
+      {/* <div>
         <MainHeader />
         <Main />
         <Footer />
-      </div>
+      </div> */}
+      <CreateUpdateTaskFormModal type="update" prevTaskData={getDefaultTask()} isOpen={true} closeHandler={() => {}} />
     </TaskAPIServiceContext.Provider>
   )
 }
