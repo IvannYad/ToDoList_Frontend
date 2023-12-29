@@ -207,6 +207,7 @@ export default function CreateUpdateTaskFormModal(props: TaskFormProps){
                         className="title-input-holder"
                         name="title"
                         label="Title"
+                        initialValue={props.prevTaskData.taskTitle}
                         rules={
                             [
                                 { 
@@ -226,19 +227,29 @@ export default function CreateUpdateTaskFormModal(props: TaskFormProps){
                         <Input 
                             className="task-create-form-input title-input"
                             onChange={(event) => onTitleChangeHandler(event)}
-                            defaultValue={props.prevTaskData.taskTitle}   
                         />
                     </Form.Item>
                     <div className="task-create-form-time-row">
                         <Form.Item
                             className="time-input-holder"
-                            name="start-time-picker" 
+                            name="start-time" 
                             label="Start time"
+                            initialValue={dayjs(convertToReadableDate(props.prevTaskData.taskStartTime))}
                             rules={
                                 [
                                     { 
                                         required: true, message: 'Please input the start time!' 
                                     },
+                                    ({getFieldValue}) =>({
+                                        validator(_, value){
+                                            console.log(getFieldValue("end-time"));
+                                            console.log(value.toDate());
+                                            if(!value || (getFieldValue("end-time").toDate() > value.toDate())){
+                                                return Promise.resolve();
+                                            }
+                                            return Promise.reject(new Error("Start time can`t be greater than end time"));
+                                        }
+                                    })
                                 ]
                             }>
                             <DatePicker showTime={{
@@ -246,24 +257,33 @@ export default function CreateUpdateTaskFormModal(props: TaskFormProps){
                             }}
                                 className="task-create-form-input time-input"
                                 //onChange={(event) => onTimeChangeHandler(event)}
-                                defaultValue={dayjs(convertToReadableDate(props.prevTaskData.taskStartTime))} 
                                 format={"YYYY-MM-DD HH:mm A"}/>
                         </Form.Item>
                         <Form.Item
                             className="time-input-holder"
-                            name="end-time-picker" 
+                            name="end-time" 
                             label="End time"
+                            initialValue={dayjs(convertToReadableDate(props.prevTaskData.taskEndTime))}
                             rules={
                                 [
                                     { 
                                         required: true, message: 'Please input the end time!' 
                                     },
+                                    ({getFieldValue}) =>({
+                                        validator(_, value){
+                                            console.log(getFieldValue("end-time"));
+                                            console.log(value.toDate());
+                                            if(!value || (getFieldValue("start-time") < value)){
+                                                return Promise.resolve();
+                                            }
+                                            return Promise.reject(new Error("End time can`t be less than start time"));
+                                        }
+                                    })
                                 ]
                             }>
                             <DatePicker showTime={{
                                 use12Hours: true
                             }}
-                                defaultValue={dayjs(convertToReadableDate(props.prevTaskData.taskEndTime))} 
                                 format={"YYYY-MM-DD HH:mm A"}
                                 className="task-create-form-input time-input"/>
                         </Form.Item>
