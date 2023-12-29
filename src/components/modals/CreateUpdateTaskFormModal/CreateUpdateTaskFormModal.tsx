@@ -1,14 +1,15 @@
 import "./CreateUpdateTaskFormModal.css"
 import { ChangeEvent, FormEvent, useContext, useEffect, useRef, useState } from "react";
-import { Button, DatePicker, Form, Input, Modal } from "antd";
+import { Button, DatePicker, Form, Input, Modal, Select } from "antd";
 import { Task, TaskCreate } from "../../../models/Task";
 import TaskValidator from "../../../services/TaskValidator";
 import { OnTasksChangeHandlersContext } from "../../Main/Main";
 import { TaskAPIServiceContext } from "../../App/App";
 import CardHeader from "../../ui/CardHeader/CardHeader";
 import { Converter } from "../../../services/Converter";
-import dayjs from "dayjs";
+import dayjs  from "dayjs";
 import convertToReadableDate from "../../../helperFunctions/convertToReadableDate";
+import TextArea from "antd/es/input/TextArea";
 
 type TaskFormProps = {
     isOpen: boolean;
@@ -67,7 +68,7 @@ export default function CreateUpdateTaskFormModal(props: TaskFormProps){
     // Handlers for input change.
     function onTitleChangeHandler(event: ChangeEvent<HTMLInputElement>){
         event.preventDefault();
-        setTask({ ...task, taskTitle: titleInput.current!.value})
+        setTask({ ...task})
     }
 
     // function onTimeChangeHandler(event: ChangeEvent<HTMLInputElement>){
@@ -234,7 +235,7 @@ export default function CreateUpdateTaskFormModal(props: TaskFormProps){
                             className="time-input-holder"
                             name="start-time" 
                             label="Start time"
-                            initialValue={dayjs(convertToReadableDate(props.prevTaskData.taskStartTime))}
+                            initialValue={props.prevTaskData.taskStartTime ? dayjs(convertToReadableDate(props.prevTaskData.taskStartTime)) : dayjs()}
                             rules={
                                 [
                                     { 
@@ -263,7 +264,7 @@ export default function CreateUpdateTaskFormModal(props: TaskFormProps){
                             className="time-input-holder"
                             name="end-time" 
                             label="End time"
-                            initialValue={dayjs(convertToReadableDate(props.prevTaskData.taskEndTime))}
+                            initialValue={props.prevTaskData.taskEndTime ? dayjs(convertToReadableDate(props.prevTaskData.taskStartTime)) : dayjs()}
                             rules={
                                 [
                                     { 
@@ -288,21 +289,44 @@ export default function CreateUpdateTaskFormModal(props: TaskFormProps){
                                 className="task-create-form-input time-input"/>
                         </Form.Item>
                     </div>
-                    <div id="task-create-form-description-row">
-                        <label htmlFor="description-input-field">Description</label>
-                        <textarea id="description-input-field" rows={5} className="task-create-from-input description-input" 
-                        name="additionalDescription" ref={descriptionInput} onChange={(event) => onDescriptionChangeHandler(event)}
-                        defaultValue={props.prevTaskData.additionalDescription} required></textarea>
-                        <div id="description-input-error" className="task-input-error"></div>
-                    </div>
-                    <div id="task-create-form-type-row">
-                        <label htmlFor="type-input-field">Type</label>
-                        <select id="type-input-field" className="task-create-from-input type-input"
-                         name="type" ref={typeInput} onChange={(event) => onTypeChangeHandler(event)} defaultValue={props.prevTaskData.type}>
-                            <option value="feature" className="type-options">Feature</option>
-                            <option value="bug" className="type-options">Bug</option>
-                        </select>
-                    </div>
+                    <Form.Item
+                            className="description-input-holder"
+                            name="description" 
+                            label="Description"
+                            initialValue={props.prevTaskData.additionalDescription}
+                            rules={
+                                [
+                                    { 
+                                        required: true, message: 'Please input the description!' 
+                                    },
+                                ]
+                            }>
+                            <TextArea
+                                className="task-create-form-input description-input"
+                                showCount maxLength={150} onChange={(event) => onDescriptionChangeHandler(event)}
+                            />
+                    </Form.Item>
+                    <Form.Item
+                            className="type-input-holder"
+                            name="type" 
+                            label="Type"
+                            initialValue={props.prevTaskData.type}
+                            rules={
+                                [
+                                    { 
+                                        required: true, message: 'Please input the type!' 
+                                    },
+                                ]
+                            }>
+                            <Select
+                                className="task-create-form-input type-input"
+                                onChange={(event) => onTypeChangeHandler(event)}
+                                options={[
+                                    {value: "feature", label: "Feature"},
+                                    {value: "bug", label: "Bug"}
+                                ]}
+                            />
+                    </Form.Item>
                 </Form>
             </div>
             

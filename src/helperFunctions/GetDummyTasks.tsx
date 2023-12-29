@@ -55,10 +55,10 @@ export function getDefaultTask(): Task
 {
     return {
         id: 0,
-        taskTitle: "sdfsdfsd",
+        taskTitle: "",
         additionalDescription: "",
-        taskStartTime: "2023-02-18T14:54:28.555Z",
-        taskEndTime: "2023-02-19T14:54:28.555Z",
+        taskStartTime: "",
+        taskEndTime: "",
         status: "to-do",
         type: "feature",
     }
