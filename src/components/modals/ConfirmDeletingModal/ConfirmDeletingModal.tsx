@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { OnTasksChangeHandlersContext } from "../../Main/Main";
 import { TaskAPIServiceContext } from "../../App/App";
 import "./ConfirmDeletingModal.css"
-import { Modal } from "antd";
+import { Button, Modal } from "antd";
 
 type DeleteSubmittionMessageProps = {
     isOpen: boolean;
@@ -27,15 +27,18 @@ export default function ConfirmDeletingModal(props: DeleteSubmittionMessageProps
             className="delete-submission-modal"
             open={props.isOpen}
             centered={true}
-            onCancel={(event) => props.closeHandler(event)}
-            onOk={(event) => onDeleteSubmitHandler(event)}
-            okButtonProps={{ 
-                className: "confirm-delete-task-button button",
-            }}
-            okText="Delete"
-            cancelButtonProps={{ 
-                className: "cancel-delete-task-button button",
-            }}
+            footer={
+                [
+                    <Button
+                        onClick={(event) => onDeleteSubmitHandler(event)}
+                        className="confirm-delete-task-button button"
+                    >Delete</Button>,
+                    <Button
+                        onClick={(event) => props.closeHandler(event)}
+                        className="cancel-delete-task-button button"
+                    >Cancel</Button>
+                ]
+            }
             cancelText="Cancel"
             >
                 <div className="content-holder">
