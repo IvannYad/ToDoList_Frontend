@@ -4,7 +4,7 @@
 
 .create-update-task-form-modal .ant-modal-content{
     width: 500px;
-    min-height: 550px;
+    min-height: 500px;
     height: fit-content;
     border-radius: 20px;
     border: 1px solid #DEDDDD;
@@ -14,8 +14,8 @@
 
 .create-update-task-form-modal .ant-modal-body{
     width: 100%;
-    min-height: 85%;
-    height: fit-content;
+    min-height: 85% !important;
+    
 }
 
 .create-update-task-form-modal .ant-modal-body .task-create-update-form-holder{

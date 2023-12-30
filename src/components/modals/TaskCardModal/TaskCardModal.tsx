@@ -5,6 +5,7 @@ import "./TaskCardModal.css"
 import { useState } from "react";
 import ConfirmDeletingModal from "../ConfirmDeletingModal/ConfirmDeletingModal";
 import { Button, Modal } from "antd";
+import CreateUpdateTaskFormModal from "../CreateUpdateTaskFormModal/CreateUpdateTaskFormModal";
 
 
 type TaskCardProps = {
@@ -14,19 +15,18 @@ type TaskCardProps = {
 }
 
 export default function TaskCardModal(props: TaskCardProps){
-    // const [isUpdateFormOpen, setIsUpdateFromOpen] = useState(false);
+    const [isUpdateFormOpen, setIsUpdateFromOpen] = useState(false);
     const [isDeleteFormOpen, setIsDeleteFromOpen] = useState(false);
 
     // Function for handling opening and closing from for updating and delete submission message.
     function openUpdateFormHandler(event: React.MouseEvent<HTMLElement, MouseEvent>): void{
         event.preventDefault();
-        //setIsUpdateFromOpen(true);
+        setIsUpdateFromOpen(true);
     }
 
-    // function closeUpdateFormHandler(event: React.MouseEvent<HTMLElement, MouseEvent>): void{
-    //     event.preventDefault();
-    //     setIsUpdateFromOpen(false);
-    // }
+    function closeUpdateFormHandler(): void{
+        setIsUpdateFromOpen(false);
+    }
 
     function openDeleteFormHandler(event: React.MouseEvent<HTMLElement, MouseEvent>): void{
         event.preventDefault();
@@ -92,6 +92,7 @@ export default function TaskCardModal(props: TaskCardProps){
                     </div>
                 </div>
                 <ConfirmDeletingModal id={props.data.id} isOpen={isDeleteFormOpen} closeHandler={closeDeleteFormHandler}/>
+                <CreateUpdateTaskFormModal type="update" prevTaskData={props.data} isOpen={isUpdateFormOpen} closeHandler={closeUpdateFormHandler} />
         </Modal>
     )
 }

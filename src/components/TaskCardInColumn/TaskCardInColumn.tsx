@@ -67,7 +67,7 @@ export default function TaskCardInColumn(props: TaskCardPropsInColumn){
                 </div>
                 <div id="card-time-display">
                     <div id="row-holder" className="card-time-text">
-                        {convertToReadableDate(props.data.taskStartTime)} - {convertToReadableDate(props.data.taskStartTime)}
+                        {convertToReadableDate(props.data.taskStartTime)} - {convertToReadableDate(props.data.taskEndTime)}
                     </div>
                 </div>
                 <div id="card-description-display">
