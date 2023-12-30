@@ -1,10 +1,11 @@
 import './App.css'
-import MainHeader from '../MainHeader/MainHeader'
-import Footer from '../Footer/Footer'
-import Main from '../Main/Main'
 import ITaskAPIService from '../../api/ITaskAPIService'
 import TaskAPIService from '../../api/TaskAPIService'
 import React from 'react'
+import MainHeader from '../MainHeader/MainHeader';
+import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
+
 
 export const TaskAPIServiceContext = React.createContext<ITaskAPIService>(new TaskAPIService(""));
 
@@ -17,8 +18,6 @@ function App() {
         <MainHeader />
         <Main />
         <Footer />
-        <div id="curtains"></div>
-        <div id="additional-elements-holder"></div>
       </div>
     </TaskAPIServiceContext.Provider>
   )

@@ -30,7 +30,7 @@ export default function SearchFrom(props: SearchFormProps){
     return (
         <form onSubmit={(event) => onSubmitHandler(event)} id="search-form">
             <input onChange={onChangeHandler} type="text" ref={filterInput} id="input" placeholder="Filter by name, status, type"/>
-            <button type="submit" id="button" className="button-on-board">Search</button>
+            <button type="submit" id="button" className="">Search</button>
         </form>
     )
 }

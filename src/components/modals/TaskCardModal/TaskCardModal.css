@@ -1,0 +1,175 @@
+.task-card-modal{
+    width: fit-content !important;
+}
+.task-card-modal .ant-modal-content{
+    height: 360px !important;
+    width: 600px;
+    border-radius: 20px;
+    border: 2px solid #DEDDDD;
+    background: #100F0F !important;
+    padding: 0px;
+}
+
+.task-card-modal .ant-modal-body{
+    height: 80%;
+}
+
+.task-card-modal .ant-modal-body .status-holder{
+    width: 100%;
+    height: 31px;
+    display: flex;
+    justify-content: end;
+}
+
+.task-card-modal .ant-modal-body .task-card-status{
+    padding-left: 3%;
+    padding-right: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-width: 7%;
+    width: fit-content;
+    border-radius: 0px 20px;
+    position: relative;
+    right: 0;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.task-card-modal .ant-modal-body .status-to-do{
+    color: #38FF40;
+    border-bottom: 2px solid #38FF40;
+    border-left: 2px solid #38FF40;
+    background: rgba(61, 252, 44, 0.274);
+}
+
+.task-card-modal .ant-modal-body .status-in-progress{
+    color: #FFD233;
+    border-bottom: 2px solid #FFD233;
+    border-left: 2px solid #FFD233;
+    background: rgba(255, 207, 84, 0.322);
+}
+
+.task-card-modal .ant-modal-body .status-done{
+    color: #bd67ff;
+    border-bottom: 2px solid #bd67ff;
+    border-left: 2px solid #bd67ff;
+    background: rgba(165, 49, 253, 0.322);
+}
+
+.task-card-modal .ant-modal-body .card-header{
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: normal;
+}
+.task-card-modal .ant-modal-body .card-time-display{
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: normal;
+}
+.task-card-modal .ant-modal-body .card-description-display{
+    min-height: 25%;
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: normal;
+}   
+
+
+.task-card-modal .ant-modal-body .row-holder{
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-card-modal .ant-modal-footer{
+    margin: 0px;
+    height: 20%;
+    width: 100%;;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-card-modal .ant-modal-footer .row-holder{
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-card-modal .ant-modal-footer .button{
+    font-size: 18px !important;
+    border-radius: 20px;
+    padding: 0;
+    font-family: Inter;
+    font-size: medium;
+    width: 150px !important;
+    height: 35px !important;
+    margin: 0px !important;
+}
+
+.task-card-modal .ant-modal-footer .update-button-card{
+    width: 30%;
+    height: 100%;
+    border: 2px solid #09ecec;
+    background: #01163500;
+    color: #09ecec;
+}
+
+.task-card-modal .ant-modal-footer .update-button-card:hover{
+    border: 2px solid #09ecec;
+    background: #62c6ee52;
+    color: #09ecec;
+}
+
+.task-card-modal .ant-modal-footer .delete-button-card{
+    width: 30%;
+    height: 100%;
+    border: 2px solid #ff3a3a;
+    background: #01163500;
+    color: #ff3a3a;
+}
+
+.task-card-modal .ant-modal-footer .delete-button-card:hover{
+    border: 2px solid #ff3a3a;
+    background: #ee626252;
+    color: #ff3a3a;
+}
+
+.task-card-modal .ant-modal-footer .cancel-button-card{
+    width: 30%;
+    height: 100%;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    background: rgba(255, 255, 255, 0);
+}
+
+.task-card-modal .ant-modal-footer .cancel-button-card:hover{
+    border: 2px solid #ffffff;
+    background: rgba(234, 240, 233, 0.336);
+    color: #ffffff;
+}
+

@@ -13,8 +13,10 @@
     border-radius: 10px;
     border: 2px solid #565656;
     background: #0E0D0D;
-    font-weight: 500;
+    font-weight: bold;
     font-size: medium;
+    color:#565656;
+    font-size: 18px;
 }
 
 #button:hover{
