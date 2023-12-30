@@ -6,3 +6,25 @@
     margin-bottom: 5%;
 }
 
+.add-task-button{
+    width: 90%;
+    height: 35px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: 1px solid #626262;
+    background: #2B2B2B;
+    color: #626262;
+    font-family: Inter;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-task-button:hover{
+    border: 2px solid #7c5cf1 !important;
+    color: #7c5cf1 !important;
+    font-weight: 900 !important;
+}
+
